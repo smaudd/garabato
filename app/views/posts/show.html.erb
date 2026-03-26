@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<h2>Comments</h2>
+<div id="comments">
+  <% @post.comments.each do |comment| %>
+    <% if params[:edit_comment_id].to_i == comment.id %>
+      <%= render "comments/form", comment: comment, post: @post %>
+    <% else %>
+      <%= render comment %>
+      <%= link_to "Edit", post_path(@post, edit_comment_id: comment.id) %> |
+      <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    <% end %>
+  <% end %>
+</div>
+
+<h3>New Comment</h3>
+<%= render "comments/form", comment: @post.comments.build, post: @post %>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+
+  <%= button_to "Destroy this post", @post, method: :delete %>
+</div>
