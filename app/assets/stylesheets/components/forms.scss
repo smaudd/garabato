@@ -3,6 +3,10 @@ input, textarea, select {
   padding: 0.5em;
   font-size: 1rem;
   width: 100%;
+  color: $primary;
+  font-family: $primary-font;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 label {

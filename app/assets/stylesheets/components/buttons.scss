@@ -20,7 +20,7 @@ button, .btn {
 button.secondary, .btn.secondary {
   background: $secondary;
   color: $primary;
-    border-color: $primary;
+  border-color: $primary;
 }
 
 button[disabled], .btn[disabled] {
@@ -28,4 +28,10 @@ button[disabled], .btn[disabled] {
   color: #aaa;
   border-color: $border;
   cursor: not-allowed;
+}
+
+button.label, .btn.label {
+    background: transparent;
+    color: $primary;
+    border-color: transparent;
 }

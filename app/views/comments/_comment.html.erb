@@ -16,7 +16,7 @@
   <div class="flex gap-2">
     <%= render partial: 'shared/likes', locals: { likeable: comment } %>
     <% p = local_assigns[:post] || comment.post %>
-    <%= link_to "Edit", post_path(p, edit_comment_id: comment.id), class: "btn" %>
-    <%= button_to "Delete", post_comment_path(p, comment), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    <%= link_to "Edit", post_path(p, edit_comment_id: comment.id), class: "btn label" %>
+    <%= button_to "Delete", post_comment_path(p, comment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn label" %>
   </div>
 </div>
