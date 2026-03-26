@@ -1,0 +1,8 @@
+<%# Partial %>
+<% user_like = likeable.likes.find_by(user: Current.user) %>
+<span>up <%= likeable.likes.where(value: 1).count %></span>
+<span>down <%= likeable.likes.where(value: -1).count %></span>
+<% if Current.user %>
+  <%= like_button('up', likeable, 1, user_like, user_like&.value) %>
+  <%= like_button('down', likeable, -1, user_like, user_like&.value) %>
+<% end %>

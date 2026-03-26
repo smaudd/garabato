@@ -11,4 +11,7 @@
   <div>
     <%= comment.body %>
   </div>
+  <div>
+    <%= render partial: 'shared/likes', locals: { likeable: comment } %>
+  </div>
 </div>
