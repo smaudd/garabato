@@ -2,9 +2,9 @@
   <div>
     <strong><%= comment.user&.email_address || 'Usuario desconocido' %></strong>
     <small>
-      creado: <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
+      created: <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
       <% if comment.updated_at && comment.updated_at != comment.created_at %>
-        | editado: <%= comment.updated_at.strftime('%Y-%m-%d %H:%M') %>
+        | edited
       <% end %>
     </small>
   </div>
