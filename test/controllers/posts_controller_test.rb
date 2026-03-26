@@ -2,9 +2,11 @@ require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:one)
+    sign_in_as(@user)
     @post = posts(:one)
   end
-
+  # -- dummy tests
   test "should get index" do
     get posts_url
     assert_response :success
