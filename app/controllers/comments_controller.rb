@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = Current.user if defined?(Current) && Current.respond_to?(:user)
     if @comment.save
-      redirect_to @post, notice: "Comment was successfully created."
+      redirect_to @post, notice: "Comment was successfully created.", type: "success"
     else
       render "posts/show", status: :unprocessable_entity
     end
