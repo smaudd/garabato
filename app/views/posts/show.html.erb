@@ -4,7 +4,7 @@
 
 <h2>Comments</h2>
 <div id="comments">
-  <% @post.comments.each do |comment| %>
+  <% @post.comments.select(&:persisted?).each do |comment| %>
     <% if params[:edit_comment_id].to_i == comment.id %>
       <%= render "comments/form", comment: comment, post: @post %>
     <% else %>
@@ -14,7 +14,7 @@
 </div>
 
 <h3>New Comment</h3>
-<%= render "comments/form", comment: @post.comments.build, post: @post %>
+<%= render "comments/form", comment: (@new_comment || @post.comments.build), post: @post %>
 
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |

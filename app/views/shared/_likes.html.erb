@@ -1,12 +1,14 @@
 <%# Partial %>
-<% user_like = likeable.likes.find_by(user: Current.user) %>
-<div class="flex">
-    <span>up <%= likeable.likes.where(value: 1).count %></span>
-    <span>down <%= likeable.likes.where(value: -1).count %></span>
-</div>
-<div class="flex gap-2">
-<% if Current.user %>
-  <%= like_button('up', likeable, 1, user_like, user_like&.value) %>
-  <%= like_button('down', likeable, -1, user_like, user_like&.value) %>
+<% if likeable.persisted? %>
+  <% user_like = likeable.likes.find_by(user: Current.user) %>
+  <div class="flex">
+      <span>up <%= likeable.likes.where(value: 1).count %></span>
+      <span>down <%= likeable.likes.where(value: -1).count %></span>
+  </div>
+  <div class="flex gap-2">
+    <% if Current.user %>
+      <%= like_button('up', likeable, 1, user_like, user_like&.value) %>
+      <%= like_button('down', likeable, -1, user_like, user_like&.value) %>
+    <% end %>
+  </div>
 <% end %>
-</div>

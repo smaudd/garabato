@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @post, notice: "Comment was successfully created.", type: "success"
     else
+      @new_comment = @comment
       render "posts/show", status: :unprocessable_entity
     end
   end
