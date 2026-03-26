@@ -7,10 +7,10 @@ class LikesController < ApplicationController
     if like.save
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace(helpers.dom_id(@likeable), partial: partial_path, locals: { @likeable.model_name.element.to_sym => @likeable }) }
-        format.html { redirect_back fallback_location: root_path, notice: "Voto registrado." }
+        format.html { redirect_back fallback_location: root_path, notice: "Registered vote." }
       end
     else
-      redirect_back fallback_location: root_path, alert: "No se pudo registrar el voto."
+      redirect_back fallback_location: root_path, alert: "Could not register vote."
     end
   end
 
@@ -19,7 +19,7 @@ class LikesController < ApplicationController
     like&.destroy
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace(helpers.dom_id(@likeable), partial: partial_path, locals: { @likeable.model_name.element.to_sym => @likeable }) }
-      format.html { redirect_back fallback_location: root_path, notice: "Voto eliminado." }
+      format.html { redirect_back fallback_location: root_path, notice: "Vote removed." }
     end
   end
 
