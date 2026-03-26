@@ -8,9 +8,7 @@
     <% if params[:edit_comment_id].to_i == comment.id %>
       <%= render "comments/form", comment: comment, post: @post %>
     <% else %>
-      <%= render comment %>
-      <%= link_to "Edit", post_path(@post, edit_comment_id: comment.id) %> |
-      <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+      <%= render comment, post: @post %>
     <% end %>
   <% end %>
 </div>

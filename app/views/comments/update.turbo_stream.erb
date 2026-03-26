@@ -1,5 +1,5 @@
 <turbo-stream action="replace" target="<%= dom_id comment %>">
   <template>
-    <%= render partial: 'comments/comment', locals: { comment: comment } %>
+    <%= render partial: 'comments/comment', locals: { comment: comment, post: comment.post } %>
   </template>
 </turbo-stream>

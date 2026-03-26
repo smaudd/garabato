@@ -1,6 +1,8 @@
-button {
-  display: inline-block;
-  padding: 0.5em 1.2em;
+button, .btn {
+  display: block;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: $primary-font;
   border: 1px solid $primary;
   background: $primary;
   color: #fff;
@@ -8,19 +10,20 @@ button {
   cursor: pointer;
   transition: background 0.2s;
   text-decoration: none;
+  line-height: normal;
 }
 
-button:hover, button:focus {
+.btn:hover, .btn:focus, button:hover, button:focus {
   background: darken($primary, 10%);
 }
 
-button.secondary {
+button.secondary, .btn.secondary {
   background: $secondary;
   color: $primary;
-  border-color: $primary;
+    border-color: $primary;
 }
 
-button[disabled] {
+button[disabled], .btn[disabled] {
   background: $border;
   color: #aaa;
   border-color: $border;

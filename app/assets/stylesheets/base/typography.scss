@@ -1,5 +1,7 @@
+$primary-font: 'Courier New', Arial, sans-serif;
+
 body {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: $primary-font;
   color: $text;
   background: $background;
   font-size: 16px;
@@ -12,13 +14,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
-a {
+a:not(.btn) {
     color: $primary;
     text-decoration: none;
     transition: color 0.2s;
 }
 
-a:hover, a:focus {
+a:not(.btn):hover, a:not(.btn):focus {
     color: darken($primary, 10%);
 }
 
