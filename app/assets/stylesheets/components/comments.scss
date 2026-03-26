@@ -1,0 +1,14 @@
+.comment {
+  border-top: 1px solid $border;
+  padding: 0.8em 0;
+  margin-bottom: 0.5em;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: $primary;
+}
+
+.comment-body {
+  margin-top: 0.3em;
+}

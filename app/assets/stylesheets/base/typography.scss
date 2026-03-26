@@ -1,0 +1,33 @@
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  color: $text;
+  background: $background;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $primary;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover, a:focus {
+    color: darken($primary, 10%);
+}
+
+.notice {
+  padding: 0.8em 1.2em;
+  margin-bottom: 1em;
+}
+
+.notice.success {
+  background: $success;
+  color: #fff;
+}
