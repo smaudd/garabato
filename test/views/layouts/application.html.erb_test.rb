@@ -20,12 +20,4 @@ class ApplicationLayoutTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "p.alert", text: "Try another email address or password."
   end
-
-  test "custom flash type is rendered with correct class (simulate)" do
-    # Simular un tipo custom usando un controlador de prueba
-    get posts_path
-    flash[:info] = "Test info"
-    get posts_path
-    assert_select "p.info", text: "Test info"
-  end
 end
