@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+## Create user using console
+User.create!(email_address: "address", password: "pwd", password_confirmation: "pwd")

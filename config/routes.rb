@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts do
-    resources :likes, only: [ :create, :destroy ], defaults: { likeable: "post" }
-    resources :comments, only: [ :create, :edit, :update, :destroy ] do
-      resources :likes, only: [ :create, :destroy ], defaults: { likeable: "comment" }
-    end
-  end
-  resources :posts do
-    resources :comments, only: [ :create, :edit, :update, :destroy ]
-  end
   resource :session
   resources :passwords, param: :token
   resources :posts
