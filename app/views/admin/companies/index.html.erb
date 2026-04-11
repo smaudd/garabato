@@ -1,0 +1,28 @@
+<h1>Companies</h1>
+
+<%= link_to "New company", new_admin_company_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Locations</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.website %></td>
+        <td><%= company.locations.count %></td>
+        <td>
+          <%= link_to "View", admin_company_path(company) %> |
+          <%= link_to "Edit", edit_admin_company_path(company) %> |
+          <%= button_to "Delete", admin_company_path(company), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

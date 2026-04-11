@@ -1,0 +1,29 @@
+<%= form_with model: [:admin, company, location] do |form| %>
+  <% if location.errors.any? %>
+    <div>
+      <p><%= pluralize(location.errors.count, "error") %> prevented this location from being saved:</p>
+      <ul>
+        <% location.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

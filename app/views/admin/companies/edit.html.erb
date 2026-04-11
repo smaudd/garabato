@@ -1,0 +1,8 @@
+<h1>Edit Company</h1>
+
+<%= render "form", company: @company %>
+
+<div>
+  <%= link_to "View company", admin_company_path(@company) %> |
+  <%= link_to "Back to companies", admin_companies_path %>
+</div>

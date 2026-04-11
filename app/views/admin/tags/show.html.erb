@@ -1,0 +1,6 @@
+<h1><%= @tag.name %></h1>
+<p><strong>Posts:</strong> <%= @tag.posts.count %></p>
+<div>
+  <%= link_to "Edit", edit_admin_tag_path(@tag) %> |
+  <%= link_to "Back to tags", admin_tags_path %>
+</div>

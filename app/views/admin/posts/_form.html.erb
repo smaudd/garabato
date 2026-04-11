@@ -1,0 +1,79 @@
+<%= form_with model: [:admin, post],
+    data: {
+      controller: "post-locations",
+      post_locations_locations_url_value: locations_for_select_admin_company_path("__id__")
+    } do |form| %>
+  <% if post.errors.any? %>
+    <div>
+      <p><%= pluralize(post.errors.count, "error") %> prevented this post from being saved:</p>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.label :company_id, "Empresa" %>
+    <%= form.collection_select :company_id, Company.order(:name), :id, :name,
+        { prompt: "Selecciona una empresa" },
+        { data: { post_locations_target: "companySelect", action: "change->post-locations#companyChanged" } } %>
+  </div>
+
+  <div>
+    <%= form.label :category_id, "Categoría" %>
+    <%= form.collection_select :category_id, Category.order(:name), :id, :name, { prompt: "Sin categoría" }, {} %>
+  </div>
+
+  <div>
+    <label>Locales</label>
+    <div data-post-locations-target="locationsContainer">
+      <% if post.company_id.present? %>
+        <% locations = Location.where(company_id: post.company_id).order(:name) %>
+        <% locations.each do |l| %>
+          <label>
+            <input type="checkbox" name="post[location_ids][]" value="<%= l.id %>"
+              <%= post.location_ids.include?(l.id) ? "checked" : "" %>>
+            <%= l.name %>
+          </label>
+        <% end %>
+      <% else %>
+        <em>Selecciona una empresa primero</em>
+      <% end %>
+    </div>
+    <button type="button"
+      data-post-locations-target="selectAllBtn"
+      data-action="click->post-locations#toggleAll"
+      <%= post.company_id.blank? ? 'hidden' : '' %>>
+      Seleccionar todos
+    </button>
+  </div>
+
+  <div>
+    <%= form.label :tag_ids, "Tags" %>
+    <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :starts_at, "Inicio" %>
+    <%= form.datetime_local_field :starts_at %>
+  </div>
+
+  <div>
+    <%= form.label :ends_at, "Fin" %>
+    <%= form.datetime_local_field :ends_at %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

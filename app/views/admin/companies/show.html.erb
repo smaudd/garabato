@@ -1,0 +1,36 @@
+<h1><%= @company.name %></h1>
+
+<p><strong>Description:</strong> <%= @company.description %></p>
+<p><strong>Website:</strong> <%= @company.website %></p>
+
+<h2>Locations</h2>
+<%= link_to "New location", new_admin_company_location_path(@company) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @company.locations.order(:name).each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= location.address %></td>
+        <td><%= location.phone %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_company_location_path(@company, location) %> |
+          <%= button_to "Delete", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to "Edit company", edit_admin_company_path(@company) %> |
+  <%= link_to "Back to companies", admin_companies_path %>
+</div>

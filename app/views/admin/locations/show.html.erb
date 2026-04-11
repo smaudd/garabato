@@ -1,0 +1,10 @@
+<h1><%= @location.name %></h1>
+
+<p><strong>Address:</strong> <%= @location.address %></p>
+<p><strong>Phone:</strong> <%= @location.phone %></p>
+<p><strong>Company:</strong> <%= link_to @company.name, admin_company_path(@company) %></p>
+
+<div>
+  <%= link_to "Edit", edit_admin_company_location_path(@company, @location) %> |
+  <%= link_to "Back to locations", admin_company_locations_path(@company) %>
+</div>

@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    root "dashboard#index"
+    resources :companies do
+      resources :locations
+      get :locations_for_select, on: :member
+    end
+    resources :posts
+    resources :categories
+    resources :tags
+  end
+
   resource :session
   resources :passwords, param: :token
-  resources :posts
+  resources :posts, only: %i[ index show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

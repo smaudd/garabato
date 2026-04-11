@@ -6,4 +6,4 @@
 //= link controllers/index.js
 //= link @hotwired--stimulus.js
 //= link @hotwired--hotwire-native-bridge.js
-   
+//= link controllers/post_locations_controller.js
