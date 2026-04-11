@@ -7,3 +7,4 @@
 //= link @hotwired--stimulus.js
 //= link @hotwired--hotwire-native-bridge.js
 //= link controllers/post_locations_controller.js
+//= link controllers/admin_sidebar_controller.js

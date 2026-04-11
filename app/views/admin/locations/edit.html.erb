@@ -1,8 +1,7 @@
-<h1>Edit Location</h1>
+<% content_for :page_title, "Editar local" %>
 
-<%= render "form", company: @company, location: @location %>
+<%= link_to "Volver", admin_company_location_path(@company, @location), class: "back-link" %>
 
-<div>
-  <%= link_to "View location", admin_company_location_path(@company, @location) %> |
-  <%= link_to "Back to locations", admin_company_locations_path(@company) %>
+<div class="form-card">
+  <%= render "form", company: @company, location: @location %>
 </div>

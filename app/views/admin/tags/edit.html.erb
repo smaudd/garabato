@@ -1,3 +1,7 @@
-<h1>Edit Tag</h1>
-<%= render "form", tag: @tag %>
-<%= link_to "Back to tags", admin_tags_path %>
+<% content_for :page_title, "Editar tag" %>
+
+<%= link_to "Volver", admin_tag_path(@tag), class: "back-link" %>
+
+<div class="form-card">
+  <%= render "form", tag: @tag %>
+</div>

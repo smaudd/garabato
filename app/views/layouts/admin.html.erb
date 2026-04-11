@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Admin — Garabato" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <div class="admin-wrap" data-controller="admin-sidebar">
+
+      <div class="admin-overlay" data-action="click->admin-sidebar#close"></div>
+
+      <%# ---- Sidebar ---- %>
+      <aside class="admin-sidebar">
+        <%= link_to admin_root_path, class: "admin-brand" do %>
+          <div class="admin-brand-mark">G</div>
+          <div class="admin-brand-text">
+            <div class="admin-brand-name">Garabato</div>
+            <div class="admin-brand-sub">Admin</div>
+          </div>
+        <% end %>
+
+        <nav class="admin-nav">
+          <div class="admin-nav-section">General</div>
+          <%= link_to admin_root_path,
+              class: "admin-nav-item #{current_page?(admin_root_path) ? 'active' : ''}" do %>
+            <i class="nav-icon">⊞</i> Dashboard
+          <% end %>
+
+          <div class="admin-nav-section">Contenido</div>
+          <%= link_to admin_posts_path,
+              class: "admin-nav-item #{request.path.start_with?('/admin/posts') ? 'active' : ''}" do %>
+            <i class="nav-icon">◈</i> Promociones
+          <% end %>
+
+          <div class="admin-nav-section">Directorio</div>
+          <%= link_to admin_companies_path,
+              class: "admin-nav-item #{request.path.start_with?('/admin/companies') ? 'active' : ''}" do %>
+            <i class="nav-icon">◻</i> Empresas
+          <% end %>
+
+          <div class="admin-nav-section">Taxonomía</div>
+          <%= link_to admin_categories_path,
+              class: "admin-nav-item #{request.path.start_with?('/admin/categories') ? 'active' : ''}" do %>
+            <i class="nav-icon">◇</i> Categorías
+          <% end %>
+          <%= link_to admin_tags_path,
+              class: "admin-nav-item #{request.path.start_with?('/admin/tags') ? 'active' : ''}" do %>
+            <i class="nav-icon">⬡</i> Tags
+          <% end %>
+
+          <div class="admin-nav-section">Sitio</div>
+          <%= link_to root_path, class: "admin-nav-item" do %>
+            <i class="nav-icon">↗</i> Ver sitio
+          <% end %>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+          <% if Current.user %>
+            <div class="admin-user-email"><%= Current.user.email_address %></div>
+          <% end %>
+          <%= button_to "Cerrar sesión", session_path, method: :delete %>
+        </div>
+      </aside>
+
+      <%# ---- Main ---- %>
+      <main class="admin-main">
+        <header class="admin-topbar">
+          <div class="flex items-center gap-3">
+            <button class="admin-menu-btn" data-action="click->admin-sidebar#toggle" aria-label="Menú">
+              <span>☰</span>
+            </button>
+            <h1 class="admin-page-title">
+              <%= content_for?(:page_title) ? yield(:page_title) : "Admin" %>
+            </h1>
+          </div>
+          <div class="flex items-center gap-3">
+            <%= yield :header_actions %>
+          </div>
+        </header>
+
+        <% if flash.any? %>
+          <div class="admin-flash">
+            <% flash.each do |type, message| %>
+              <div class="<%= type == 'alert' ? 'alert' : 'notice' %>"><%= message %></div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="admin-content">
+          <%= yield %>
+        </div>
+      </main>
+
+    </div>
+  </body>
+</html>

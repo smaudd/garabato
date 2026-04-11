@@ -1,15 +1,60 @@
-<h1><%= @post.title %></h1>
+<% content_for :page_title, @post.title %>
+<% content_for :header_actions do %>
+  <%= link_to "Editar", edit_admin_post_path(@post), class: "btn btn-secondary" %>
+  <%= button_to "Eliminar", admin_post_path(@post), method: :delete,
+      data: { turbo_confirm: "¿Eliminar esta promoción?" },
+      class: "btn btn-danger" %>
+<% end %>
 
-<p><strong>Company:</strong> <%= @post.company&.name %></p>
-<p><strong>Category:</strong> <%= @post.category&.name %></p>
-<p><strong>Body:</strong> <%= @post.body %></p>
-<p><strong>Starts at:</strong> <%= @post.starts_at&.strftime("%d/%m/%Y") %></p>
-<p><strong>Ends at:</strong> <%= @post.ends_at&.strftime("%d/%m/%Y") %></p>
-<p><strong>Locations:</strong> <%= @post.locations.map(&:name).join(", ").presence || "—" %></p>
-<p><strong>Tags:</strong> <%= @post.tags.map(&:name).join(", ").presence || "—" %></p>
+<%= link_to "Volver a promociones", admin_posts_path, class: "back-link" %>
 
-<div>
-  <%= link_to "Edit", edit_admin_post_path(@post) %> |
-  <%= button_to "Delete", admin_post_path(@post), method: :delete, data: { turbo_confirm: "Are you sure?" } %> |
-  <%= link_to "Back to posts", admin_posts_path %>
+<div class="card">
+  <div class="card-body">
+    <div class="detail-grid">
+      <div class="detail-field">
+        <div class="field-label">Empresa</div>
+        <div class="field-value"><%= @post.company&.name || "—" %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Categoría</div>
+        <div class="field-value"><%= @post.category&.name || "—" %></div>
+      </div>
+      <div class="detail-field full">
+        <div class="field-label">Descripción</div>
+        <div class="field-value"><%= @post.body.presence || "—" %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Inicio</div>
+        <div class="field-value"><%= @post.starts_at&.strftime("%d/%m/%Y %H:%M") || "—" %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Fin</div>
+        <div class="field-value"><%= @post.ends_at&.strftime("%d/%m/%Y %H:%M") || "—" %></div>
+      </div>
+      <div class="detail-field full">
+        <div class="field-label">Locales</div>
+        <div class="field-value">
+          <% if @post.locations.any? %>
+            <div class="flex flex-wrap gap-2">
+              <% @post.locations.each do |l| %>
+                <span class="badge badge-gray"><%= l.name %></span>
+              <% end %>
+            </div>
+          <% else %>—<% end %>
+        </div>
+      </div>
+      <div class="detail-field full">
+        <div class="field-label">Tags</div>
+        <div class="field-value">
+          <% if @post.tags.any? %>
+            <div class="flex flex-wrap gap-2">
+              <% @post.tags.each do |t| %>
+                <span class="badge badge-green"><%= t.name %></span>
+              <% end %>
+            </div>
+          <% else %>—<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

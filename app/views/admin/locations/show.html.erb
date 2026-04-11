@@ -1,10 +1,31 @@
-<h1><%= @location.name %></h1>
+<% content_for :page_title, @location.name %>
+<% content_for :header_actions do %>
+  <%= link_to "Editar", edit_admin_company_location_path(@company, @location), class: "btn btn-secondary" %>
+  <%= button_to "Eliminar", admin_company_location_path(@company, @location), method: :delete,
+      data: { turbo_confirm: "¿Eliminar este local?" }, class: "btn btn-danger" %>
+<% end %>
 
-<p><strong>Address:</strong> <%= @location.address %></p>
-<p><strong>Phone:</strong> <%= @location.phone %></p>
-<p><strong>Company:</strong> <%= link_to @company.name, admin_company_path(@company) %></p>
+<%= link_to "Volver a #{@company.name}", admin_company_path(@company), class: "back-link" %>
 
-<div>
-  <%= link_to "Edit", edit_admin_company_location_path(@company, @location) %> |
-  <%= link_to "Back to locations", admin_company_locations_path(@company) %>
+<div class="card">
+  <div class="card-body">
+    <div class="detail-grid">
+      <div class="detail-field">
+        <div class="field-label">Nombre</div>
+        <div class="field-value"><%= @location.name %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Empresa</div>
+        <div class="field-value"><%= link_to @company.name, admin_company_path(@company) %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Dirección</div>
+        <div class="field-value"><%= @location.address %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Teléfono</div>
+        <div class="field-value"><%= @location.phone.presence || "—" %></div>
+      </div>
+    </div>
+  </div>
 </div>

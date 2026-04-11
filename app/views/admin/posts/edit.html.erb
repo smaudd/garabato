@@ -1,8 +1,7 @@
-<h1>Edit Post</h1>
+<% content_for :page_title, "Editar promoción" %>
 
-<%= render "form", post: @post %>
+<%= link_to "Volver", admin_post_path(@post), class: "back-link" %>
 
-<div>
-  <%= link_to "View post", admin_post_path(@post) %> |
-  <%= link_to "Back to posts", admin_posts_path %>
+<div class="form-card">
+  <%= render "form", post: @post %>
 </div>

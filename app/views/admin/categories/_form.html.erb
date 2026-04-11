@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, category] do |form| %>
   <% if category.errors.any? %>
-    <div>
-      <p><%= pluralize(category.errors.count, "error") %> prevented this category from being saved:</p>
+    <div class="form-errors">
+      <strong><%= pluralize(category.errors.count, "error") %> impidieron guardar:</strong>
       <ul>
         <% category.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,10 +10,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, placeholder: "Nombre de la categoría" %>
   </div>
 
-  <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit %>
+    <%= link_to "Cancelar", admin_categories_path, class: "btn btn-secondary" %>
+  </div>
 <% end %>

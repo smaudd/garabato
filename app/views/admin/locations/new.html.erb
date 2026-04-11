@@ -1,5 +1,7 @@
-<h1>New Location — <%= @company.name %></h1>
+<% content_for :page_title, "Nuevo local" %>
 
-<%= render "form", company: @company, location: @location %>
+<%= link_to "Volver a #{@company.name}", admin_company_path(@company), class: "back-link" %>
 
-<%= link_to "Back to locations", admin_company_locations_path(@company) %>
+<div class="form-card">
+  <%= render "form", company: @company, location: @location %>
+</div>

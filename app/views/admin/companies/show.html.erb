@@ -1,36 +1,66 @@
-<h1><%= @company.name %></h1>
+<% content_for :page_title, @company.name %>
+<% content_for :header_actions do %>
+  <%= link_to "Editar empresa", edit_admin_company_path(@company), class: "btn btn-secondary" %>
+  <%= button_to "Eliminar", admin_company_path(@company), method: :delete,
+      data: { turbo_confirm: "¿Eliminar esta empresa y sus locales?" },
+      class: "btn btn-danger" %>
+<% end %>
 
-<p><strong>Description:</strong> <%= @company.description %></p>
-<p><strong>Website:</strong> <%= @company.website %></p>
+<%= link_to "Volver a empresas", admin_companies_path, class: "back-link" %>
 
-<h2>Locations</h2>
-<%= link_to "New location", new_admin_company_location_path(@company) %>
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="detail-grid">
+      <div class="detail-field">
+        <div class="field-label">Nombre</div>
+        <div class="field-value"><%= @company.name %></div>
+      </div>
+      <div class="detail-field">
+        <div class="field-label">Website</div>
+        <div class="field-value"><%= @company.website.present? ? link_to(@company.website, @company.website, target: "_blank") : "—" %></div>
+      </div>
+      <% if @company.description.present? %>
+        <div class="detail-field full">
+          <div class="field-label">Descripción</div>
+          <div class="field-value"><%= @company.description %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @company.locations.order(:name).each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= location.address %></td>
-        <td><%= location.phone %></td>
-        <td>
-          <%= link_to "Edit", edit_admin_company_location_path(@company, location) %> |
-          <%= button_to "Delete", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div>
-  <%= link_to "Edit company", edit_admin_company_path(@company) %> |
-  <%= link_to "Back to companies", admin_companies_path %>
+<div class="card">
+  <div class="card-header">
+    <h2>Locales</h2>
+    <%= link_to "Nuevo local", new_admin_company_location_path(@company), class: "btn btn-primary btn-sm" %>
+  </div>
+  <% if @company.locations.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @company.locations.order(:name).each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td class="text-muted"><%= location.address %></td>
+            <td class="text-muted"><%= location.phone.presence || "—" %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_company_location_path(@company, location) %>
+                <%= button_to "Eliminar", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "¿Eliminar este local?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">Esta empresa no tiene locales aún.</div>
+  <% end %>
 </div>

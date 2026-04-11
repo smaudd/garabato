@@ -1,25 +1,34 @@
-<h1>Categories</h1>
+<% content_for :page_title, "Categorías" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nueva categoría", new_admin_category_path, class: "btn btn-primary" %>
+<% end %>
 
-<%= link_to "New category", new_admin_category_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Posts</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.posts.count %></td>
-        <td>
-          <%= link_to "Edit", edit_admin_category_path(category) %> |
-          <%= button_to "Delete", admin_category_path(category), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <% if @categories.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Promociones</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= link_to category.name, admin_category_path(category) %></td>
+            <td class="text-muted"><%= category.posts.count %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_category_path(category) %>
+                <%= button_to "Eliminar", admin_category_path(category), method: :delete, data: { turbo_confirm: "¿Eliminar esta categoría?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">No hay categorías aún. <%= link_to "Crear la primera", new_admin_category_path %>.</div>
+  <% end %>
+</div>

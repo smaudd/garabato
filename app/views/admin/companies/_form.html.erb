@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, company] do |form| %>
   <% if company.errors.any? %>
-    <div>
-      <p><%= pluralize(company.errors.count, "error") %> prevented this company from being saved:</p>
+    <div class="form-errors">
+      <strong><%= pluralize(company.errors.count, "error") %> impidieron guardar:</strong>
       <ul>
         <% company.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,20 +10,23 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, placeholder: "Nombre de la empresa" %>
   </div>
 
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, "Descripción" %>
+    <%= form.text_area :description, placeholder: "Descripción breve (opcional)" %>
   </div>
 
-  <div>
-    <%= form.label :website %>
-    <%= form.url_field :website %>
+  <div class="form-group">
+    <%= form.label :website, "Website" %>
+    <%= form.url_field :website, placeholder: "https://..." %>
   </div>
 
-  <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit %>
+    <%= link_to "Cancelar", admin_companies_path, class: "btn btn-secondary" %>
+  </div>
 <% end %>

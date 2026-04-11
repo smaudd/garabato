@@ -1,7 +1,26 @@
-$primary: #1bad3a;
-$secondary: #f5f6fa;
-$text: #222;
-$background: #fff;
-$border: #e0e0e0;
-$success: #27ae60;
-$error: #e74c3c;
+// Brand
+$primary:        #1aad3c;
+$primary-dark:   #158a30;
+$primary-light:  #e6f9ec;
+
+// Surfaces
+$surface:        #ffffff;
+$bg:             #f7f8fa;
+$border:         #e2e8f0;
+$border-light:   #f1f5f9;
+
+// Text
+$text:           #1a202c;
+$text-muted:     #718096;
+$text-light:     #a0aec0;
+
+// Feedback
+$success:        #1aad3c;
+$danger:         #e53e3e;
+$danger-light:   #fff5f5;
+$warning:        #d97706;
+
+// Legacy aliases
+$secondary:      $bg;
+$background:     $surface;
+$error:          $danger;

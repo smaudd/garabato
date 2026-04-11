@@ -1,32 +1,40 @@
-<h1>Posts</h1>
+<% content_for :page_title, "Promociones" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nueva promoción", new_admin_post_path, class: "btn btn-primary" %>
+<% end %>
 
-<%= link_to "New post", new_admin_post_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Company</th>
-      <th>Category</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.company&.name %></td>
-        <td><%= post.category&.name %></td>
-        <td><%= post.starts_at&.strftime("%d/%m/%Y") %></td>
-        <td><%= post.ends_at&.strftime("%d/%m/%Y") %></td>
-        <td>
-          <%= link_to "View", admin_post_path(post) %> |
-          <%= link_to "Edit", edit_admin_post_path(post) %> |
-          <%= button_to "Delete", admin_post_path(post), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <% if @posts.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Empresa</th>
+          <th>Categoría</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, admin_post_path(post) %></td>
+            <td class="text-muted"><%= post.company&.name || "—" %></td>
+            <td><%= post.category&.name || "—" %></td>
+            <td class="text-muted text-sm"><%= post.starts_at&.strftime("%d/%m/%Y") || "—" %></td>
+            <td class="text-muted text-sm"><%= post.ends_at&.strftime("%d/%m/%Y") || "—" %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_post_path(post) %>
+                <%= button_to "Eliminar", admin_post_path(post), method: :delete, data: { turbo_confirm: "¿Eliminar esta promoción?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">Aún no hay promociones. <%= link_to "Crear la primera", new_admin_post_path %>.</div>
+  <% end %>
+</div>

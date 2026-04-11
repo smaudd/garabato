@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, tag] do |form| %>
   <% if tag.errors.any? %>
-    <div>
-      <p><%= pluralize(tag.errors.count, "error") %> prevented this tag from being saved:</p>
+    <div class="form-errors">
+      <strong><%= pluralize(tag.errors.count, "error") %> impidieron guardar:</strong>
       <ul>
         <% tag.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,10 +10,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, placeholder: "Nombre del tag" %>
   </div>
 
-  <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit %>
+    <%= link_to "Cancelar", admin_tags_path, class: "btn btn-secondary" %>
+  </div>
 <% end %>

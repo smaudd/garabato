@@ -1,5 +1,7 @@
-<h1>New Post</h1>
+<% content_for :page_title, "Nueva promoción" %>
 
-<%= render "form", post: @post %>
+<%= link_to "Volver a promociones", admin_posts_path, class: "back-link" %>
 
-<%= link_to "Back to posts", admin_posts_path %>
+<div class="form-card">
+  <%= render "form", post: @post %>
+</div>

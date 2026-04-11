@@ -1,29 +1,38 @@
-<h1>Locations — <%= @company.name %></h1>
+<% content_for :page_title, "Locales — #{@company.name}" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nuevo local", new_admin_company_location_path(@company), class: "btn btn-primary" %>
+<% end %>
 
-<%= link_to "New location", new_admin_company_location_path(@company) %>
+<%= link_to "Volver a #{@company.name}", admin_company_path(@company), class: "back-link" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= location.address %></td>
-        <td><%= location.phone %></td>
-        <td>
-          <%= link_to "Edit", edit_admin_company_location_path(@company, location) %> |
-          <%= button_to "Delete", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to "Back to company", admin_company_path(@company) %>
+<div class="card">
+  <% if @locations.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @locations.each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td class="text-muted"><%= location.address %></td>
+            <td class="text-muted"><%= location.phone.presence || "—" %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_company_location_path(@company, location) %>
+                <%= button_to "Eliminar", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "¿Eliminar este local?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">Esta empresa no tiene locales aún.</div>
+  <% end %>
+</div>

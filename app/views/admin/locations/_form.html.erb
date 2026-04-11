@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, company, location] do |form| %>
   <% if location.errors.any? %>
-    <div>
-      <p><%= pluralize(location.errors.count, "error") %> prevented this location from being saved:</p>
+    <div class="form-errors">
+      <strong><%= pluralize(location.errors.count, "error") %> impidieron guardar:</strong>
       <ul>
         <% location.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,20 +10,23 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name, placeholder: "Nombre del local" %>
   </div>
 
-  <div>
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="form-group">
+    <%= form.label :address, "Dirección" %>
+    <%= form.text_field :address, placeholder: "Dirección completa" %>
   </div>
 
-  <div>
-    <%= form.label :phone %>
-    <%= form.telephone_field :phone %>
+  <div class="form-group">
+    <%= form.label :phone, "Teléfono" %>
+    <%= form.telephone_field :phone, placeholder: "+34 600 000 000" %>
   </div>
 
-  <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit %>
+    <%= link_to "Cancelar", admin_company_path(company), class: "btn btn-secondary" %>
+  </div>
 <% end %>

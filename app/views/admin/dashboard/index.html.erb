@@ -1,65 +1,76 @@
-<h1>Panel de administración</h1>
+<% content_for :page_title, "Dashboard" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nueva promoción", new_admin_post_path, class: "btn btn-primary" %>
+<% end %>
 
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
-  <div>
-    <h2>Empresas (<%= @companies_count %>)</h2>
-    <%= link_to "Ver empresas", admin_companies_path %> |
-    <%= link_to "Nueva empresa", new_admin_company_path %>
-  </div>
+<div class="stats-grid">
+  <%= link_to admin_companies_path, class: "stat-card" do %>
+    <div class="stat-value"><%= @companies_count %></div>
+    <div class="stat-label">Empresas</div>
+    <div class="stat-link">Ver todas →</div>
+  <% end %>
 
-  <div>
-    <h2>Locales (<%= @locations_count %>)</h2>
-    <%= link_to "Ver por empresa", admin_companies_path %>
-  </div>
+  <%= link_to admin_companies_path, class: "stat-card" do %>
+    <div class="stat-value"><%= @locations_count %></div>
+    <div class="stat-label">Locales</div>
+    <div class="stat-link">Ver por empresa →</div>
+  <% end %>
 
-  <div>
-    <h2>Promociones (<%= @posts_count %>)</h2>
-    <%= link_to "Ver promociones", admin_posts_path %> |
-    <%= link_to "Nueva promoción", new_admin_post_path %>
-  </div>
+  <%= link_to admin_posts_path, class: "stat-card" do %>
+    <div class="stat-value"><%= @posts_count %></div>
+    <div class="stat-label">Promociones</div>
+    <div class="stat-link">Ver todas →</div>
+  <% end %>
 
-  <div>
-    <h2>Categorías (<%= @categories_count %>)</h2>
-    <%= link_to "Ver categorías", admin_categories_path %> |
-    <%= link_to "Nueva categoría", new_admin_category_path %>
-  </div>
+  <%= link_to admin_categories_path, class: "stat-card" do %>
+    <div class="stat-value"><%= @categories_count %></div>
+    <div class="stat-label">Categorías</div>
+    <div class="stat-link">Ver todas →</div>
+  <% end %>
 
-  <div>
-    <h2>Tags (<%= @tags_count %>)</h2>
-    <%= link_to "Ver tags", admin_tags_path %> |
-    <%= link_to "Nuevo tag", new_admin_tag_path %>
-  </div>
+  <%= link_to admin_tags_path, class: "stat-card" do %>
+    <div class="stat-value"><%= @tags_count %></div>
+    <div class="stat-label">Tags</div>
+    <div class="stat-link">Ver todos →</div>
+  <% end %>
 </div>
 
-<h2>Últimas promociones</h2>
+<div class="card">
+  <div class="card-header">
+    <h2>Últimas promociones</h2>
+    <%= link_to "Ver todas", admin_posts_path, class: "btn btn-secondary btn-sm" %>
+  </div>
 
-<% if @recent_posts.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Empresa</th>
-        <th>Categoría</th>
-        <th>Creada</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @recent_posts.each do |post| %>
+  <% if @recent_posts.any? %>
+    <table class="data-table">
+      <thead>
         <tr>
-          <td><%= post.title %></td>
-          <td><%= post.company&.name || "—" %></td>
-          <td><%= post.category&.name || "—" %></td>
-          <td><%= post.created_at.strftime("%d/%m/%Y") %></td>
-          <td>
-            <%= link_to "Ver", admin_post_path(post) %> |
-            <%= link_to "Editar", edit_admin_post_path(post) %>
-          </td>
+          <th>Título</th>
+          <th>Empresa</th>
+          <th>Categoría</th>
+          <th>Creada</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "Ver todas las promociones →", admin_posts_path %>
-<% else %>
-  <p>No hay promociones todavía. <%= link_to "Crea la primera", new_admin_post_path %>.</p>
-<% end %>
+      </thead>
+      <tbody>
+        <% @recent_posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.company&.name || "—" %></td>
+            <td><%= post.category&.name.present? ? post.category.name : "—" %></td>
+            <td class="text-muted text-sm"><%= post.created_at.strftime("%d/%m/%Y") %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Ver", admin_post_path(post) %>
+                <%= link_to "Editar", edit_admin_post_path(post) %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">Aún no hay promociones. <%= link_to "Crear la primera", new_admin_post_path %></div>
+  <% end %>
+</div>
+

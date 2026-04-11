@@ -1,8 +1,7 @@
-<h1>Edit Company</h1>
+<% content_for :page_title, "Editar empresa" %>
 
-<%= render "form", company: @company %>
+<%= link_to "Volver", admin_company_path(@company), class: "back-link" %>
 
-<div>
-  <%= link_to "View company", admin_company_path(@company) %> |
-  <%= link_to "Back to companies", admin_companies_path %>
+<div class="form-card">
+  <%= render "form", company: @company %>
 </div>

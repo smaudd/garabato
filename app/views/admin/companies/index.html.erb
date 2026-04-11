@@ -1,28 +1,36 @@
-<h1>Companies</h1>
+<% content_for :page_title, "Empresas" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nueva empresa", new_admin_company_path, class: "btn btn-primary" %>
+<% end %>
 
-<%= link_to "New company", new_admin_company_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Website</th>
-      <th>Locations</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.website %></td>
-        <td><%= company.locations.count %></td>
-        <td>
-          <%= link_to "View", admin_company_path(company) %> |
-          <%= link_to "Edit", edit_admin_company_path(company) %> |
-          <%= button_to "Delete", admin_company_path(company), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <% if @companies.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Website</th>
+          <th>Locales</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= link_to company.name, admin_company_path(company) %></td>
+            <td class="text-muted text-sm"><%= company.website.presence || "—" %></td>
+            <td class="text-muted"><%= company.locations.count %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_company_path(company) %>
+                <%= button_to "Eliminar", admin_company_path(company), method: :delete, data: { turbo_confirm: "¿Eliminar esta empresa y sus locales?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">No hay empresas aún. <%= link_to "Crear la primera", new_admin_company_path %>.</div>
+  <% end %>
+</div>

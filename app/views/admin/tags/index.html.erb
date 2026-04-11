@@ -1,25 +1,34 @@
-<h1>Tags</h1>
+<% content_for :page_title, "Tags" %>
+<% content_for :header_actions do %>
+  <%= link_to "Nuevo tag", new_admin_tag_path, class: "btn btn-primary" %>
+<% end %>
 
-<%= link_to "New tag", new_admin_tag_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Posts</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.name %></td>
-        <td><%= tag.posts.count %></td>
-        <td>
-          <%= link_to "Edit", edit_admin_tag_path(tag) %> |
-          <%= button_to "Delete", admin_tag_path(tag), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <% if @tags.any? %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Promociones</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td><%= link_to tag.name, admin_tag_path(tag) %></td>
+            <td class="text-muted"><%= tag.posts.count %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Editar", edit_admin_tag_path(tag) %>
+                <%= button_to "Eliminar", admin_tag_path(tag), method: :delete, data: { turbo_confirm: "¿Eliminar este tag?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="table-empty">No hay tags aún. <%= link_to "Crear el primero", new_admin_tag_path %>.</div>
+  <% end %>
+</div>
