@@ -19,7 +19,7 @@ class Admin::TagsController < Admin::BaseController
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      redirect_to admin_tag_path(@tag), notice: "Tag was successfully created."
+      redirect_to admin_tag_path(@tag), notice: t("admin.notices.tag.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Admin::TagsController < Admin::BaseController
 
   def update
     if @tag.update(tag_params)
-      redirect_to admin_tag_path(@tag), notice: "Tag was successfully updated.", status: :see_other
+      redirect_to admin_tag_path(@tag), notice: t("admin.notices.tag.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Admin::TagsController < Admin::BaseController
 
   def destroy
     @tag.destroy!
-    redirect_to admin_tags_path, notice: "Tag was successfully destroyed.", status: :see_other
+    redirect_to admin_tags_path, notice: t("admin.notices.tag.destroyed"), status: :see_other
   end
 
   private

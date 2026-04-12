@@ -19,7 +19,7 @@ class Admin::CompaniesController < Admin::BaseController
     @company = Company.new(company_params)
 
     if @company.save
-      redirect_to admin_company_path(@company), notice: "Company was successfully created."
+      redirect_to admin_company_path(@company), notice: t("admin.notices.company.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Admin::CompaniesController < Admin::BaseController
 
   def update
     if @company.update(company_params)
-      redirect_to admin_company_path(@company), notice: "Company was successfully updated.", status: :see_other
+      redirect_to admin_company_path(@company), notice: t("admin.notices.company.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Admin::CompaniesController < Admin::BaseController
 
   def destroy
     @company.destroy!
-    redirect_to admin_companies_path, notice: "Company was successfully destroyed.", status: :see_other
+    redirect_to admin_companies_path, notice: t("admin.notices.company.destroyed"), status: :see_other
   end
 
   def locations_for_select

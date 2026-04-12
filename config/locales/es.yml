@@ -245,3 +245,25 @@ es:
       form:
         placeholder_name: Nombre del tag
         cancel: Cancelar
+
+    notices:
+      post:
+        created: "Promoción creada con éxito."
+        updated: "Promoción actualizada con éxito."
+        destroyed: "Promoción eliminada con éxito."
+      company:
+        created: "Empresa creada con éxito."
+        updated: "Empresa actualizada con éxito."
+        destroyed: "Empresa eliminada con éxito."
+      location:
+        created: "Local creado con éxito."
+        updated: "Local actualizado con éxito."
+        destroyed: "Local eliminado con éxito."
+      category:
+        created: "Categoría creada con éxito."
+        updated: "Categoría actualizada con éxito."
+        destroyed: "Categoría eliminada con éxito."
+      tag:
+        created: "Tag creado con éxito."
+        updated: "Tag actualizado con éxito."
+        destroyed: "Tag eliminado con éxito."

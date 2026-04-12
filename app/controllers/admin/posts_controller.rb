@@ -19,7 +19,7 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to admin_post_path(@post), notice: "Post was successfully created."
+      redirect_to admin_post_path(@post), notice: t("admin.notices.post.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_post_path(@post), notice: "Post was successfully updated.", status: :see_other
+      redirect_to admin_post_path(@post), notice: t("admin.notices.post.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Admin::PostsController < Admin::BaseController
 
   def destroy
     @post.destroy!
-    redirect_to admin_posts_path, notice: "Post was successfully destroyed.", status: :see_other
+    redirect_to admin_posts_path, notice: t("admin.notices.post.destroyed"), status: :see_other
   end
 
   private

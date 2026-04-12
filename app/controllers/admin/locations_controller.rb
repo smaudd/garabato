@@ -20,7 +20,7 @@ class Admin::LocationsController < Admin::BaseController
     @location = @company.locations.build(location_params)
 
     if @location.save
-      redirect_to admin_company_location_path(@company, @location), notice: "Location was successfully created."
+      redirect_to admin_company_location_path(@company, @location), notice: t("admin.notices.location.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def update
     if @location.update(location_params)
-      redirect_to admin_company_location_path(@company, @location), notice: "Location was successfully updated.", status: :see_other
+      redirect_to admin_company_location_path(@company, @location), notice: t("admin.notices.location.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def destroy
     @location.destroy!
-    redirect_to admin_company_locations_path(@company), notice: "Location was successfully destroyed.", status: :see_other
+    redirect_to admin_company_locations_path(@company), notice: t("admin.notices.location.destroyed"), status: :see_other
   end
 
   private
