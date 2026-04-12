@@ -196,7 +196,7 @@ $sidebar-width: 236px;
 }
 
 .admin-content {
-  padding: 1.75rem 2rem;
+  padding: 1rem;
   flex: 1;
 }
 
@@ -542,10 +542,6 @@ $mobile-bp: 768px;
     padding: 0.75rem 1rem 0;
   }
 
-  .admin-content {
-    padding: 1.25rem 1rem;
-  }
-
   .stats-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 0.75rem;
@@ -594,10 +590,6 @@ $mobile-bp: 768px;
 
   .admin-flash {
     padding: 0.875rem 1.5rem 0;
-  }
-
-  .admin-content {
-    padding: 1.5rem;
   }
 
   .form-card {
