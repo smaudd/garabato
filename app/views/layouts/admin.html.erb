@@ -19,42 +19,42 @@
           <div class="admin-brand-mark">G</div>
           <div class="admin-brand-text">
             <div class="admin-brand-name">Garabato</div>
-            <div class="admin-brand-sub">Admin</div>
+            <div class="admin-brand-sub"><%= t("admin.layout.brand_sub") %></div>
           </div>
         <% end %>
 
         <nav class="admin-nav">
-          <div class="admin-nav-section">General</div>
+          <div class="admin-nav-section"><%= t("admin.layout.nav.general") %></div>
           <%= link_to admin_root_path,
               class: "admin-nav-item #{current_page?(admin_root_path) ? 'active' : ''}" do %>
-            <i class="nav-icon">⊞</i> Dashboard
+            <i class="nav-icon">⊞</i> <%= t("admin.layout.nav.dashboard") %>
           <% end %>
 
-          <div class="admin-nav-section">Contenido</div>
+          <div class="admin-nav-section"><%= t("admin.layout.nav.content") %></div>
           <%= link_to admin_posts_path,
               class: "admin-nav-item #{request.path.start_with?('/admin/posts') ? 'active' : ''}" do %>
-            <i class="nav-icon">◈</i> Promociones
+            <i class="nav-icon">◈</i> <%= t("admin.layout.nav.posts") %>
           <% end %>
 
-          <div class="admin-nav-section">Directorio</div>
+          <div class="admin-nav-section"><%= t("admin.layout.nav.directory") %></div>
           <%= link_to admin_companies_path,
               class: "admin-nav-item #{request.path.start_with?('/admin/companies') ? 'active' : ''}" do %>
-            <i class="nav-icon">◻</i> Empresas
+            <i class="nav-icon">◻</i> <%= t("admin.layout.nav.companies") %>
           <% end %>
 
-          <div class="admin-nav-section">Taxonomía</div>
+          <div class="admin-nav-section"><%= t("admin.layout.nav.taxonomy") %></div>
           <%= link_to admin_categories_path,
               class: "admin-nav-item #{request.path.start_with?('/admin/categories') ? 'active' : ''}" do %>
-            <i class="nav-icon">◇</i> Categorías
+            <i class="nav-icon">◇</i> <%= t("admin.layout.nav.categories") %>
           <% end %>
           <%= link_to admin_tags_path,
               class: "admin-nav-item #{request.path.start_with?('/admin/tags') ? 'active' : ''}" do %>
-            <i class="nav-icon">⬡</i> Tags
+            <i class="nav-icon">⬡</i> <%= t("admin.layout.nav.tags") %>
           <% end %>
 
-          <div class="admin-nav-section">Sitio</div>
+          <div class="admin-nav-section"><%= t("admin.layout.nav.site") %></div>
           <%= link_to root_path, class: "admin-nav-item" do %>
-            <i class="nav-icon">↗</i> Ver sitio
+            <i class="nav-icon">↗</i> <%= t("admin.layout.nav.view_site") %>
           <% end %>
         </nav>
 
@@ -62,7 +62,7 @@
           <% if Current.user %>
             <div class="admin-user-email"><%= Current.user.email_address %></div>
           <% end %>
-          <%= button_to "Cerrar sesión", session_path, method: :delete %>
+          <%= button_to t("admin.layout.footer.logout"), session_path, method: :delete %>
         </div>
       </aside>
 
@@ -70,11 +70,11 @@
       <main class="admin-main">
         <header class="admin-topbar">
           <div class="flex items-center gap-3">
-            <button class="admin-menu-btn" data-action="click->admin-sidebar#toggle" aria-label="Menú">
+            <button class="admin-menu-btn" data-action="click->admin-sidebar#toggle" aria-label="<%= t('admin.layout.menu_aria') %>">
               <span>☰</span>
             </button>
             <h1 class="admin-page-title">
-              <%= content_for?(:page_title) ? yield(:page_title) : "Admin" %>
+              <%= content_for?(:page_title) ? yield(:page_title) : t("admin.layout.page_title_default") %>
             </h1>
           </div>
           <div class="flex items-center gap-3">

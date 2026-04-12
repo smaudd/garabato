@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, company] do |form| %>
   <% if company.errors.any? %>
     <div class="form-errors">
-      <strong><%= pluralize(company.errors.count, "error") %> impidieron guardar:</strong>
+      <strong><%= t('admin.shared.errors', count: company.errors.count) %></strong>
       <ul>
         <% company.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,22 +11,22 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name, "Nombre" %>
-    <%= form.text_field :name, placeholder: "Nombre de la empresa" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: t('.placeholder_name') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :description, "Descripción" %>
-    <%= form.text_area :description, placeholder: "Descripción breve (opcional)" %>
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: t('.placeholder_description') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :website, "Website" %>
-    <%= form.url_field :website, placeholder: "https://..." %>
+    <%= form.label :website %>
+    <%= form.url_field :website, placeholder: t('.placeholder_website') %>
   </div>
 
   <div class="form-actions">
     <%= form.submit %>
-    <%= link_to "Cancelar", admin_companies_path, class: "btn btn-secondary" %>
+    <%= link_to t('.cancel'), admin_companies_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

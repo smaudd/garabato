@@ -1,6 +1,6 @@
-<% content_for :page_title, "Editar promoción" %>
+<% content_for :page_title, t('.page_title') %>
 
-<%= link_to "Volver", admin_post_path(@post), class: "back-link" %>
+<%= link_to t('.back'), admin_post_path(@post), class: "back-link" %>
 
 <div class="form-card">
   <%= render "form", post: @post %>

@@ -6,7 +6,7 @@
 
   <% if post.errors.any? %>
     <div class="form-errors">
-      <strong><%= pluralize(post.errors.count, "error") %> impidieron guardar:</strong>
+      <strong><%= t('admin.shared.errors', count: post.errors.count) %></strong>
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -16,32 +16,35 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :title, "Título" %>
-    <%= form.text_field :title, placeholder: "Ej. 30% de descuento en toda la tienda" %>
+    <%= form.label :title %>
+    <%= form.text_field :title, placeholder: t('.title_placeholder') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :body, "Descripción" %>
-    <%= form.text_area :body, placeholder: "Detalla la promoción..." %>
+    <%= form.label :body %>
+    <%= form.text_area :body, placeholder: t('.body_placeholder') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :company_id, "Empresa" %>
+    <%= form.label :company_id %>
     <%= form.collection_select :company_id, Company.order(:name), :id, :name,
-        { prompt: "Selecciona una empresa" },
+        { prompt: t('.company_prompt') },
         { data: { post_locations_target: "companySelect",
                   action: "change->post-locations#companyChanged" } } %>
   </div>
 
   <div class="form-group">
-    <%= form.label :category_id, "Categoría" %>
+    <%= form.label :category_id %>
     <%= form.collection_select :category_id, Category.order(:name), :id, :name,
-        { prompt: "Sin categoría (opcional)" }, {} %>
+        { prompt: t('.category_prompt') }, {} %>
   </div>
 
   <div class="form-group">
-    <label>Locales</label>
-    <div data-post-locations-target="locationsContainer" class="checkbox-group">
+    <%= form.label :location_ids %>
+    <div data-post-locations-target="locationsContainer"
+         class="checkbox-group"
+         data-no-company="<%= t('.locations_hint') %>"
+         data-no-locations="<%= t('.no_locations') %>">
       <% if post.company_id.present? %>
         <% Location.where(company_id: post.company_id).order(:name).each do |l| %>
           <label>
@@ -51,19 +54,21 @@
           </label>
         <% end %>
       <% else %>
-        <em class="text-muted text-sm">Selecciona una empresa primero</em>
+        <em class="text-muted text-sm"><%= t('.locations_hint') %></em>
       <% end %>
     </div>
     <button type="button"
       data-post-locations-target="selectAllBtn"
       data-action="click->post-locations#toggleAll"
+      data-select-text="<%= t('.select_all') %>"
+      data-deselect-text="<%= t('.deselect_all') %>"
       <%= post.company_id.blank? ? 'hidden' : '' %>>
-      Seleccionar todos
+      <%= t('.select_all') %>
     </button>
   </div>
 
   <div class="form-group">
-    <label>Tags</label>
+    <%= form.label :tag_ids %>
     <div class="checkbox-group">
       <% selected_tag_ids = post.tag_ids %>
       <% Tag.order(:name).each do |tag| %>
@@ -77,18 +82,18 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :starts_at, "Fecha de inicio" %>
+    <%= form.label :starts_at %>
     <%= form.datetime_local_field :starts_at %>
   </div>
 
   <div class="form-group">
-    <%= form.label :ends_at, "Fecha de fin" %>
+    <%= form.label :ends_at %>
     <%= form.datetime_local_field :ends_at %>
   </div>
 
   <div class="form-actions">
     <%= form.submit %>
-    <%= link_to "Cancelar", admin_posts_path, class: "btn btn-secondary" %>
+    <%= link_to t('.cancel'), admin_posts_path, class: "btn btn-secondary" %>
   </div>
 
 <% end %>

@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, category] do |form| %>
   <% if category.errors.any? %>
     <div class="form-errors">
-      <strong><%= pluralize(category.errors.count, "error") %> impidieron guardar:</strong>
+      <strong><%= t('admin.shared.errors', count: category.errors.count) %></strong>
       <ul>
         <% category.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +11,12 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name, "Nombre" %>
-    <%= form.text_field :name, placeholder: "Nombre de la categoría" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: t('.placeholder_name') %>
   </div>
 
   <div class="form-actions">
     <%= form.submit %>
-    <%= link_to "Cancelar", admin_categories_path, class: "btn btn-secondary" %>
+    <%= link_to t('.cancel'), admin_categories_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

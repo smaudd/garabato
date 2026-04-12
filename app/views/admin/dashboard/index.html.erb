@@ -1,54 +1,54 @@
-<% content_for :page_title, "Dashboard" %>
+<% content_for :page_title, t('.page_title') %>
 <% content_for :header_actions do %>
-  <%= link_to "Nueva promoción", new_admin_post_path, class: "btn btn-primary" %>
+  <%= link_to t('.new_post'), new_admin_post_path, class: "btn btn-primary" %>
 <% end %>
 
 <div class="stats-grid">
   <%= link_to admin_companies_path, class: "stat-card" do %>
     <div class="stat-value"><%= @companies_count %></div>
-    <div class="stat-label">Empresas</div>
-    <div class="stat-link">Ver todas →</div>
+    <div class="stat-label"><%= t('.companies_label') %></div>
+    <div class="stat-link"><%= t('.companies_link') %></div>
   <% end %>
 
   <%= link_to admin_companies_path, class: "stat-card" do %>
     <div class="stat-value"><%= @locations_count %></div>
-    <div class="stat-label">Locales</div>
-    <div class="stat-link">Ver por empresa →</div>
+    <div class="stat-label"><%= t('.locations_label') %></div>
+    <div class="stat-link"><%= t('.locations_link') %></div>
   <% end %>
 
   <%= link_to admin_posts_path, class: "stat-card" do %>
     <div class="stat-value"><%= @posts_count %></div>
-    <div class="stat-label">Promociones</div>
-    <div class="stat-link">Ver todas →</div>
+    <div class="stat-label"><%= t('.posts_label') %></div>
+    <div class="stat-link"><%= t('.posts_link') %></div>
   <% end %>
 
   <%= link_to admin_categories_path, class: "stat-card" do %>
     <div class="stat-value"><%= @categories_count %></div>
-    <div class="stat-label">Categorías</div>
-    <div class="stat-link">Ver todas →</div>
+    <div class="stat-label"><%= t('.categories_label') %></div>
+    <div class="stat-link"><%= t('.categories_link') %></div>
   <% end %>
 
   <%= link_to admin_tags_path, class: "stat-card" do %>
     <div class="stat-value"><%= @tags_count %></div>
-    <div class="stat-label">Tags</div>
-    <div class="stat-link">Ver todos →</div>
+    <div class="stat-label"><%= t('.tags_label') %></div>
+    <div class="stat-link"><%= t('.tags_link') %></div>
   <% end %>
 </div>
 
 <div class="card">
   <div class="card-header">
-    <h2>Últimas promociones</h2>
-    <%= link_to "Ver todas", admin_posts_path, class: "btn btn-secondary btn-sm" %>
+    <h2><%= t('.recent_title') %></h2>
+    <%= link_to t('.view_all'), admin_posts_path, class: "btn btn-secondary btn-sm" %>
   </div>
 
   <% if @recent_posts.any? %>
     <table class="data-table">
       <thead>
         <tr>
-          <th>Título</th>
-          <th>Empresa</th>
-          <th>Categoría</th>
-          <th>Creada</th>
+          <th><%= t('.col_title') %></th>
+          <th><%= t('.col_company') %></th>
+          <th><%= t('.col_category') %></th>
+          <th><%= t('.col_created') %></th>
           <th></th>
         </tr>
       </thead>
@@ -61,8 +61,8 @@
             <td class="text-muted text-sm"><%= post.created_at.strftime("%d/%m/%Y") %></td>
             <td>
               <div class="td-actions">
-                <%= link_to "Ver", admin_post_path(post) %>
-                <%= link_to "Editar", edit_admin_post_path(post) %>
+                <%= link_to t('.see'), admin_post_path(post) %>
+                <%= link_to t('admin.shared.edit'), edit_admin_post_path(post) %>
               </div>
             </td>
           </tr>
@@ -70,7 +70,7 @@
       </tbody>
     </table>
   <% else %>
-    <div class="table-empty">Aún no hay promociones. <%= link_to "Crear la primera", new_admin_post_path %></div>
+    <div class="table-empty"><%= t('.empty') %> <%= link_to t('.empty_link'), new_admin_post_path %></div>
   <% end %>
 </div>
 

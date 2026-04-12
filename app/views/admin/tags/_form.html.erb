@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, tag] do |form| %>
   <% if tag.errors.any? %>
     <div class="form-errors">
-      <strong><%= pluralize(tag.errors.count, "error") %> impidieron guardar:</strong>
+      <strong><%= t('admin.shared.errors', count: tag.errors.count) %></strong>
       <ul>
         <% tag.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +11,12 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name, "Nombre" %>
-    <%= form.text_field :name, placeholder: "Nombre del tag" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: t('.placeholder_name') %>
   </div>
 
   <div class="form-actions">
     <%= form.submit %>
-    <%= link_to "Cancelar", admin_tags_path, class: "btn btn-secondary" %>
+    <%= link_to t('.cancel'), admin_tags_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
-<% content_for :page_title, "Nuevo tag" %>
+<% content_for :page_title, t('.page_title') %>
 
-<%= link_to "Volver a tags", admin_tags_path, class: "back-link" %>
+<%= link_to t('.back'), admin_tags_path, class: "back-link" %>
 
 <div class="form-card">
   <%= render "form", tag: @tag %>

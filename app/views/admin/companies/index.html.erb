@@ -1,6 +1,6 @@
-<% content_for :page_title, "Empresas" %>
+<% content_for :page_title, t('.page_title') %>
 <% content_for :header_actions do %>
-  <%= link_to "Nueva empresa", new_admin_company_path, class: "btn btn-primary" %>
+  <%= link_to t('.new'), new_admin_company_path, class: "btn btn-primary" %>
 <% end %>
 
 <div class="card">
@@ -8,9 +8,9 @@
     <table class="data-table">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Website</th>
-          <th>Locales</th>
+          <th><%= t('.col_name') %></th>
+          <th><%= t('.col_website') %></th>
+          <th><%= t('.col_locations') %></th>
           <th></th>
         </tr>
       </thead>
@@ -22,8 +22,8 @@
             <td class="text-muted"><%= company.locations.count %></td>
             <td>
               <div class="td-actions">
-                <%= link_to "Editar", edit_admin_company_path(company) %>
-                <%= button_to "Eliminar", admin_company_path(company), method: :delete, data: { turbo_confirm: "¿Eliminar esta empresa y sus locales?" } %>
+                <%= link_to t('admin.shared.edit'), edit_admin_company_path(company) %>
+                <%= button_to t('admin.shared.delete'), admin_company_path(company), method: :delete, data: { turbo_confirm: t('.confirm_delete') } %>
               </div>
             </td>
           </tr>
@@ -31,6 +31,6 @@
       </tbody>
     </table>
   <% else %>
-    <div class="table-empty">No hay empresas aún. <%= link_to "Crear la primera", new_admin_company_path %>.</div>
+    <div class="table-empty"><%= t('.empty') %> <%= link_to t('.empty_link'), new_admin_company_path %>.</div>
   <% end %>
 </div>

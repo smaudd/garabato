@@ -1,27 +1,27 @@
 <% content_for :page_title, @company.name %>
 <% content_for :header_actions do %>
-  <%= link_to "Editar empresa", edit_admin_company_path(@company), class: "btn btn-secondary" %>
-  <%= button_to "Eliminar", admin_company_path(@company), method: :delete,
-      data: { turbo_confirm: "¿Eliminar esta empresa y sus locales?" },
+  <%= link_to t('.edit'), edit_admin_company_path(@company), class: "btn btn-secondary" %>
+  <%= button_to t('admin.shared.delete'), admin_company_path(@company), method: :delete,
+      data: { turbo_confirm: t('.confirm_delete_company') },
       class: "btn btn-danger" %>
 <% end %>
 
-<%= link_to "Volver a empresas", admin_companies_path, class: "back-link" %>
+<%= link_to t('.back'), admin_companies_path, class: "back-link" %>
 
 <div class="card mb-4">
   <div class="card-body">
     <div class="detail-grid">
       <div class="detail-field">
-        <div class="field-label">Nombre</div>
+        <div class="field-label"><%= t('.field_name') %></div>
         <div class="field-value"><%= @company.name %></div>
       </div>
       <div class="detail-field">
-        <div class="field-label">Website</div>
+        <div class="field-label"><%= t('.field_website') %></div>
         <div class="field-value"><%= @company.website.present? ? link_to(@company.website, @company.website, target: "_blank") : "—" %></div>
       </div>
       <% if @company.description.present? %>
         <div class="detail-field full">
-          <div class="field-label">Descripción</div>
+          <div class="field-label"><%= t('.field_description') %></div>
           <div class="field-value"><%= @company.description %></div>
         </div>
       <% end %>
@@ -31,16 +31,16 @@
 
 <div class="card">
   <div class="card-header">
-    <h2>Locales</h2>
-    <%= link_to "Nuevo local", new_admin_company_location_path(@company), class: "btn btn-primary btn-sm" %>
+    <h2><%= t('.locations_section') %></h2>
+    <%= link_to t('.add_location'), new_admin_company_location_path(@company), class: "btn btn-primary btn-sm" %>
   </div>
   <% if @company.locations.any? %>
     <table class="data-table">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Teléfono</th>
+          <th><%= t('.col_name') %></th>
+          <th><%= t('.col_address') %></th>
+          <th><%= t('.col_phone') %></th>
           <th></th>
         </tr>
       </thead>
@@ -52,8 +52,8 @@
             <td class="text-muted"><%= location.phone.presence || "—" %></td>
             <td>
               <div class="td-actions">
-                <%= link_to "Editar", edit_admin_company_location_path(@company, location) %>
-                <%= button_to "Eliminar", admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: "¿Eliminar este local?" } %>
+                <%= link_to t('admin.shared.edit'), edit_admin_company_location_path(@company, location) %>
+                <%= button_to t('admin.shared.delete'), admin_company_location_path(@company, location), method: :delete, data: { turbo_confirm: t('.confirm_delete_location') } %>
               </div>
             </td>
           </tr>
@@ -61,6 +61,6 @@
       </tbody>
     </table>
   <% else %>
-    <div class="table-empty">Esta empresa no tiene locales aún.</div>
+    <div class="table-empty"><%= t('.no_locations') %></div>
   <% end %>
 </div>

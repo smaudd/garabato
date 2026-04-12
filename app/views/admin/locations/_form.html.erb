@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, company, location] do |form| %>
   <% if location.errors.any? %>
     <div class="form-errors">
-      <strong><%= pluralize(location.errors.count, "error") %> impidieron guardar:</strong>
+      <strong><%= t('admin.shared.errors', count: location.errors.count) %></strong>
       <ul>
         <% location.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,22 +11,22 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name, "Nombre" %>
-    <%= form.text_field :name, placeholder: "Nombre del local" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: t('.placeholder_name') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :address, "Dirección" %>
-    <%= form.text_field :address, placeholder: "Dirección completa" %>
+    <%= form.label :address %>
+    <%= form.text_field :address, placeholder: t('.placeholder_address') %>
   </div>
 
   <div class="form-group">
-    <%= form.label :phone, "Teléfono" %>
-    <%= form.telephone_field :phone, placeholder: "+34 600 000 000" %>
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone, placeholder: t('.placeholder_phone') %>
   </div>
 
   <div class="form-actions">
     <%= form.submit %>
-    <%= link_to "Cancelar", admin_company_path(company), class: "btn btn-secondary" %>
+    <%= link_to t('.cancel'), admin_company_path(company), class: "btn btn-secondary" %>
   </div>
 <% end %>

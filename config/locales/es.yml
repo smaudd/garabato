@@ -1,0 +1,247 @@
+es:
+  helpers:
+    submit:
+      create: "Crear %{model}"
+      update: "Actualizar %{model}"
+
+  activerecord:
+    models:
+      post:
+        one: Promoción
+        other: Promociones
+      company:
+        one: Empresa
+        other: Empresas
+      location:
+        one: Local
+        other: Locales
+      category:
+        one: Categoría
+        other: Categorías
+      tag:
+        one: Tag
+        other: Tags
+    attributes:
+      post:
+        title: Título
+        body: Descripción
+        company_id: Empresa
+        category_id: Categoría
+        location_ids: Locales
+        tag_ids: Tags
+        starts_at: Fecha de inicio
+        ends_at: Fecha de fin
+      company:
+        name: Nombre
+        description: Descripción
+        website: Website
+      location:
+        name: Nombre
+        address: Dirección
+        phone: Teléfono
+      category:
+        name: Nombre
+      tag:
+        name: Nombre
+
+  admin:
+    shared:
+      cancel: Cancelar
+      edit: Editar
+      delete: Eliminar
+      back: Volver
+      errors:
+        one: "1 error impidió guardar:"
+        other: "%{count} errores impidieron guardar:"
+
+    layout:
+      brand_sub: Admin
+      menu_aria: Menú
+      page_title_default: Admin
+      nav:
+        general: General
+        dashboard: Dashboard
+        content: Contenido
+        posts: Promociones
+        directory: Directorio
+        companies: Empresas
+        taxonomy: Taxonomía
+        categories: Categorías
+        tags: Tags
+        site: Sitio
+        view_site: Ver sitio
+      footer:
+        logout: Cerrar sesión
+
+    dashboard:
+      index:
+        page_title: Dashboard
+        new_post: Nueva promoción
+        companies_label: Empresas
+        companies_link: "Ver todas →"
+        locations_label: Locales
+        locations_link: "Ver por empresa →"
+        posts_label: Promociones
+        posts_link: "Ver todas →"
+        categories_label: Categorías
+        categories_link: "Ver todas →"
+        tags_label: Tags
+        tags_link: "Ver todos →"
+        recent_title: Últimas promociones
+        view_all: Ver todas
+        col_title: Título
+        col_company: Empresa
+        col_category: Categoría
+        col_created: Creada
+        see: Ver
+        empty: Aún no hay promociones.
+        empty_link: Crear la primera
+
+    posts:
+      index:
+        page_title: Promociones
+        new: Nueva promoción
+        col_title: Título
+        col_company: Empresa
+        col_category: Categoría
+        col_starts_at: Inicio
+        col_ends_at: Fin
+        confirm_delete: "¿Eliminar esta promoción?"
+        empty: Aún no hay promociones.
+        empty_link: Crear la primera
+      show:
+        back: Volver a promociones
+        field_company: Empresa
+        field_category: Categoría
+        field_body: Descripción
+        field_starts_at: Inicio
+        field_ends_at: Fin
+        field_locations: Locales
+        field_tags: Tags
+        confirm_delete: "¿Eliminar esta promoción?"
+      new:
+        page_title: Nueva promoción
+        back: Volver a promociones
+      edit:
+        page_title: Editar promoción
+        back: Volver
+      form:
+        title_placeholder: "Ej. 30% de descuento en toda la tienda"
+        body_placeholder: Detalla la promoción...
+        company_prompt: Selecciona una empresa
+        category_prompt: Sin categoría (opcional)
+        locations_hint: Selecciona una empresa primero
+        no_locations: Esta empresa no tiene locales
+        select_all: Seleccionar todos
+        deselect_all: Deseleccionar todos
+        cancel: Cancelar
+
+    companies:
+      index:
+        page_title: Empresas
+        new: Nueva empresa
+        col_name: Nombre
+        col_website: Website
+        col_locations: Locales
+        confirm_delete: "¿Eliminar esta empresa y sus locales?"
+        empty: No hay empresas aún.
+        empty_link: Crear la primera
+      show:
+        back: Volver a empresas
+        edit: Editar empresa
+        field_name: Nombre
+        field_website: Website
+        field_description: Descripción
+        locations_section: Locales
+        add_location: Nuevo local
+        col_name: Nombre
+        col_address: Dirección
+        col_phone: Teléfono
+        confirm_delete_company: "¿Eliminar esta empresa y sus locales?"
+        confirm_delete_location: "¿Eliminar este local?"
+        no_locations: Esta empresa no tiene locales aún.
+      new:
+        page_title: Nueva empresa
+        back: Volver a empresas
+      edit:
+        page_title: Editar empresa
+        back: Volver
+      form:
+        placeholder_name: Nombre de la empresa
+        placeholder_description: Descripción breve (opcional)
+        placeholder_website: "https://..."
+        cancel: Cancelar
+
+    locations:
+      index:
+        page_title: "Locales — %{company}"
+        new: Nuevo local
+        back: "Volver a %{company}"
+        col_name: Nombre
+        col_address: Dirección
+        col_phone: Teléfono
+        confirm_delete: "¿Eliminar este local?"
+        empty: Esta empresa no tiene locales aún.
+      show:
+        back: "Volver a %{company}"
+        edit: Editar
+        field_name: Nombre
+        field_company: Empresa
+        field_address: Dirección
+        field_phone: Teléfono
+        confirm_delete: "¿Eliminar este local?"
+      new:
+        page_title: Nuevo local
+        back: "Volver a %{company}"
+      edit:
+        page_title: Editar local
+        back: Volver
+      form:
+        placeholder_name: Nombre del local
+        placeholder_address: Dirección completa
+        placeholder_phone: "+34 600 000 000"
+        cancel: Cancelar
+
+    categories:
+      index:
+        page_title: Categorías
+        new: Nueva categoría
+        col_name: Nombre
+        col_posts: Promociones
+        confirm_delete: "¿Eliminar esta categoría?"
+        empty: No hay categorías aún.
+        empty_link: Crear la primera
+      show:
+        back: Volver a categorías
+        field_posts: Promociones asociadas
+      new:
+        page_title: Nueva categoría
+        back: Volver a categorías
+      edit:
+        page_title: Editar categoría
+        back: Volver
+      form:
+        placeholder_name: Nombre de la categoría
+        cancel: Cancelar
+
+    tags:
+      index:
+        page_title: Tags
+        new: Nuevo tag
+        col_name: Nombre
+        col_posts: Promociones
+        confirm_delete: "¿Eliminar este tag?"
+        empty: No hay tags aún.
+        empty_link: Crear el primero
+      show:
+        back: Volver a tags
+        field_posts: Promociones asociadas
+      new:
+        page_title: Nuevo tag
+        back: Volver a tags
+      edit:
+        page_title: Editar tag
+        back: Volver
+      form:
+        placeholder_name: Nombre del tag
+        cancel: Cancelar

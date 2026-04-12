@@ -1,6 +1,6 @@
-<% content_for :page_title, "Nueva categoría" %>
+<% content_for :page_title, t('.page_title') %>
 
-<%= link_to "Volver a categorías", admin_categories_path, class: "back-link" %>
+<%= link_to t('.back'), admin_categories_path, class: "back-link" %>
 
 <div class="form-card">
   <%= render "form", category: @category %>

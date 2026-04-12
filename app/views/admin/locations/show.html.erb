@@ -1,29 +1,29 @@
 <% content_for :page_title, @location.name %>
 <% content_for :header_actions do %>
-  <%= link_to "Editar", edit_admin_company_location_path(@company, @location), class: "btn btn-secondary" %>
-  <%= button_to "Eliminar", admin_company_location_path(@company, @location), method: :delete,
-      data: { turbo_confirm: "¿Eliminar este local?" }, class: "btn btn-danger" %>
+  <%= link_to t('.edit'), edit_admin_company_location_path(@company, @location), class: "btn btn-secondary" %>
+  <%= button_to t('admin.shared.delete'), admin_company_location_path(@company, @location), method: :delete,
+      data: { turbo_confirm: t('.confirm_delete') }, class: "btn btn-danger" %>
 <% end %>
 
-<%= link_to "Volver a #{@company.name}", admin_company_path(@company), class: "back-link" %>
+<%= link_to t('.back', company: @company.name), admin_company_path(@company), class: "back-link" %>
 
 <div class="card">
   <div class="card-body">
     <div class="detail-grid">
       <div class="detail-field">
-        <div class="field-label">Nombre</div>
+        <div class="field-label"><%= t('.field_name') %></div>
         <div class="field-value"><%= @location.name %></div>
       </div>
       <div class="detail-field">
-        <div class="field-label">Empresa</div>
+        <div class="field-label"><%= t('.field_company') %></div>
         <div class="field-value"><%= link_to @company.name, admin_company_path(@company) %></div>
       </div>
       <div class="detail-field">
-        <div class="field-label">Dirección</div>
+        <div class="field-label"><%= t('.field_address') %></div>
         <div class="field-value"><%= @location.address %></div>
       </div>
       <div class="detail-field">
-        <div class="field-label">Teléfono</div>
+        <div class="field-label"><%= t('.field_phone') %></div>
         <div class="field-value"><%= @location.phone.presence || "—" %></div>
       </div>
     </div>

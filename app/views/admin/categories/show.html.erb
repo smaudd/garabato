@@ -1,14 +1,14 @@
 <% content_for :page_title, @category.name %>
 <% content_for :header_actions do %>
-  <%= link_to "Editar", edit_admin_category_path(@category), class: "btn btn-secondary" %>
+  <%= link_to t('admin.shared.edit'), edit_admin_category_path(@category), class: "btn btn-secondary" %>
 <% end %>
 
-<%= link_to "Volver a categorías", admin_categories_path, class: "back-link" %>
+<%= link_to t('.back'), admin_categories_path, class: "back-link" %>
 
 <div class="card">
   <div class="card-body">
     <div class="detail-field">
-      <div class="field-label">Promociones asociadas</div>
+      <div class="field-label"><%= t('.field_posts') %></div>
       <div class="field-value"><%= @category.posts.count %></div>
     </div>
   </div>

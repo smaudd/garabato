@@ -15,7 +15,8 @@ export default class extends Controller {
     if (companyId) {
       this.loadLocations(companyId)
     } else {
-      this.locationsContainerTarget.innerHTML = "<em>Selecciona una empresa primero</em>"
+      const hint = this.locationsContainerTarget.dataset.noCompany
+      this.locationsContainerTarget.innerHTML = `<em>${hint}</em>`
       this.selectAllBtnTarget.hidden = true
     }
   }
@@ -29,7 +30,8 @@ export default class extends Controller {
 
   renderLocations(locations) {
     if (locations.length === 0) {
-      this.locationsContainerTarget.innerHTML = "<em>Esta empresa no tiene locales</em>"
+      const hint = this.locationsContainerTarget.dataset.noLocations
+      this.locationsContainerTarget.innerHTML = `<em>${hint}</em>`
       this.selectAllBtnTarget.hidden = true
       return
     }
@@ -42,7 +44,7 @@ export default class extends Controller {
       </label>
     `).join("")
     this.selectAllBtnTarget.hidden = false
-    this.selectAllBtnTarget.textContent = "Seleccionar todos"
+    this.selectAllBtnTarget.textContent = this.selectAllBtnTarget.dataset.selectText
   }
 
   selectedLocationIds() {
@@ -54,6 +56,8 @@ export default class extends Controller {
     const checkboxes = this.locationsContainerTarget.querySelectorAll("input[type=checkbox]")
     const allChecked = Array.from(checkboxes).every(cb => cb.checked)
     checkboxes.forEach(cb => cb.checked = !allChecked)
-    this.selectAllBtnTarget.textContent = allChecked ? "Seleccionar todos" : "Deseleccionar todos"
+    const selectText = this.selectAllBtnTarget.dataset.selectText
+    const deselectText = this.selectAllBtnTarget.dataset.deselectText
+    this.selectAllBtnTarget.textContent = allChecked ? selectText : deselectText
   }
 }
