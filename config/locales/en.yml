@@ -59,7 +59,8 @@ en:
         field_voice: Voice (answers)
         field_question_voice: Voice (questions)
         field_question_display_ms: Question display (ms)
-        field_background: Background path
+        field_background: Background
+        field_rendered_video: Rendered video
         entries_section: Entries
 
       new:
@@ -88,7 +89,8 @@ en:
         voice: Voice (answers)
         question_voice: Voice (questions)
         question_display_ms: Question display (ms)
-        background_path: Background path
+        background: Background (image/video)
+        rendered_video: Rendered video
       chat_entry:
         username: Username
         avatar_emoji: Emoji

@@ -33,10 +33,26 @@
       <dt><%= t(".field_question_display_ms") %></dt>
       <dd><%= @chat_video.question_display_ms %> ms</dd>
     </div>
-    <% if @chat_video.background_path.present? %>
+    <% if @chat_video.background.attached? %>
       <div>
         <dt><%= t(".field_background") %></dt>
-        <dd class="font-mono"><%= @chat_video.background_path %></dd>
+        <dd>
+          <% if @chat_video.background.content_type.start_with?("video/") %>
+            <video src="<%= url_for(@chat_video.background) %>" controls class="media-preview"></video>
+          <% else %>
+            <img src="<%= url_for(@chat_video.background) %>" alt="Background" class="media-preview">
+          <% end %>
+          <p class="file-current"><%= link_to @chat_video.background.filename, url_for(@chat_video.background) %></p>
+        </dd>
+      </div>
+    <% end %>
+    <% if @chat_video.rendered_video.attached? %>
+      <div>
+        <dt><%= t(".field_rendered_video") %></dt>
+        <dd>
+          <video src="<%= url_for(@chat_video.rendered_video) %>" controls class="media-preview"></video>
+          <p class="file-current"><%= link_to @chat_video.rendered_video.filename, url_for(@chat_video.rendered_video) %></p>
+        </dd>
       </div>
     <% end %>
   </dl>
@@ -68,6 +84,19 @@
           <dt><%= ChatEntry.human_attribute_name(:answer) %></dt>
           <dd><%= entry.answer %></dd>
         </div>
+        <% if entry.background.attached? %>
+          <div>
+            <dt><%= ChatEntry.human_attribute_name(:background) %></dt>
+            <dd>
+              <% if entry.background.content_type.start_with?("video/") %>
+                <video src="<%= url_for(entry.background) %>" controls class="media-preview"></video>
+              <% else %>
+                <img src="<%= url_for(entry.background) %>" alt="Background" class="media-preview">
+              <% end %>
+              <p class="file-current"><%= link_to entry.background.filename, url_for(entry.background) %></p>
+            </dd>
+          </div>
+        <% end %>
       </dl>
     </div>
   <% end %>

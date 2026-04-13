@@ -15,12 +15,11 @@
 
   <body>
     <header class="site-header">
-      <%= link_to root_path, class: "site-logo" do %>
+      <%= link_to admin_root_path, class: "site-logo" do %>
         Gara<span>bato</span>
       <% end %>
 
       <nav class="site-nav">
-        <%= link_to "Posts", posts_path %>
         <% if authenticated? %>
           <%= link_to "Admin", admin_root_path, class: "btn btn-ghost btn-sm" %>
           <%= button_to "Logout", session_path, method: :delete, class: "btn btn-secondary btn-sm" %>

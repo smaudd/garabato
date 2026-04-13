@@ -43,8 +43,29 @@
     </div>
 
     <div class="field">
-      <%= f.label :background_path %>
-      <%= f.text_field :background_path, class: "input font-mono", placeholder: "content/my-video/video/1.mp4" %>
+      <%= f.label :background %>
+      <% if chat_video.background.attached? %>
+        <div class="media-preview-wrap">
+          <% if chat_video.background.content_type.start_with?("video/") %>
+            <video src="<%= url_for(chat_video.background) %>" controls class="media-preview"></video>
+          <% else %>
+            <img src="<%= url_for(chat_video.background) %>" alt="Background" class="media-preview">
+          <% end %>
+          <p class="file-current"><%= chat_video.background.filename %></p>
+        </div>
+      <% end %>
+      <%= f.file_field :background, class: "file-input", accept: "image/*,video/*" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rendered_video %>
+      <% if chat_video.rendered_video.attached? %>
+        <div class="media-preview-wrap">
+          <video src="<%= url_for(chat_video.rendered_video) %>" controls class="media-preview"></video>
+          <p class="file-current"><%= chat_video.rendered_video.filename %></p>
+        </div>
+      <% end %>
+      <%= f.file_field :rendered_video, class: "file-input", accept: "video/*" %>
     </div>
   </fieldset>
 

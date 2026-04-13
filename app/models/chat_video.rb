@@ -1,6 +1,9 @@
 class ChatVideo < ApplicationRecord
   has_many :chat_entries, -> { order(:id) }, dependent: :destroy
 
+  has_one_attached :background
+  has_one_attached :rendered_video
+
   validates :slug,             presence: true, uniqueness: true,
                                format: { with: /\A[a-z0-9\-]+\z/, message: "solo letras minúsculas, números y guiones" }
   validates :title,            presence: true

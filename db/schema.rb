@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_13_200000) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -60,7 +60,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_200000) do
 
   create_table "chat_videos", force: :cascade do |t|
     t.string "accent_color", default: "#5865F2"
-    t.string "background_path"
     t.datetime "created_at", null: false
     t.integer "question_display_ms", default: 2500, null: false
     t.string "question_voice", default: "ef_dora", null: false

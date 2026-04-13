@@ -490,4 +490,127 @@
   .field--full { grid-column: 1 / -1; }
 }
 
+// ── Media preview (background image/video thumbnails) ──────────────────────
+.media-preview-wrap {
+  margin-bottom: 0.5rem;
+}
 
+.media-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 12rem;
+  border-radius: 0.375rem;
+  border: 1px solid $border;
+  object-fit: cover;
+  background: $surface-0;
+}
+
+// ── Public layout (header / nav / main / flash) ─────────────────────────────
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: $bg;
+  border-bottom: 1px solid $border;
+
+  @media (min-width: $bp-md) { padding: 0.875rem 1.5rem; }
+}
+
+.site-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text !important;
+  text-decoration: none;
+  span { color: $primary; }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  form { display: inline-flex; }
+}
+
+.site-main {
+  padding: 1.25rem 1rem;
+  @media (min-width: $bp-md) { padding: 2rem 1.5rem; }
+}
+
+.flash-bar {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &.notice { background: rgba($success, 0.15); color: $success-lt; }
+  &.alert  { background: rgba($error, 0.15);   color: $error-lt;   }
+}
+
+// ── Auth pages (login / forgot / reset password) ───────────────────────────
+.auth-wrap {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: $bg;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: $bg-subtle;
+  border: 1px solid $border;
+  border-radius: 0.75rem;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  .site-logo { font-size: 1.5rem; }
+}
+
+.auth-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $text;
+  text-align: center;
+  margin: 0;
+}
+
+.auth-subtitle {
+  font-size: 0.875rem;
+  color: $text-muted;
+  text-align: center;
+  margin: -0.75rem 0 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.auth-actions {
+  margin-top: 0.5rem;
+}
+
+.auth-footer {
+  font-size: 0.875rem;
+  color: $text-muted;
+  text-align: center;
+  margin: 0;
+
+  a { color: $primary-lt; }
+}
+
+.btn-block { width: 100%; }

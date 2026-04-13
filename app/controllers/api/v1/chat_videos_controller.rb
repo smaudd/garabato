@@ -21,8 +21,9 @@ class Api::V1::ChatVideosController < ApplicationController
         voice:              video.voice,
         questionVoice:      video.question_voice,
         accentColor:        video.accent_color,
-        background:         video.background_path,
-        questionDisplayMs:  video.question_display_ms
+        background:         attached_url(video.background),
+        questionDisplayMs:  video.question_display_ms,
+        renderedVideo:      attached_url(video.rendered_video)
       }
 
       if full
@@ -34,12 +35,18 @@ class Api::V1::ChatVideosController < ApplicationController
 
     def serialize_entry(entry)
       {
-        username:     entry.username,
-        avatarEmoji:  entry.avatar_emoji,
-        bubbleColor:  entry.bubble_color,
-        question:     entry.question,
+        username:      entry.username,
+        avatarEmoji:   entry.avatar_emoji,
+        bubbleColor:   entry.bubble_color,
+        question:      entry.question,
         questionVoice: entry.question_voice,
-        answer:       entry.answer
+        answer:        entry.answer,
+        background:    attached_url(entry.background)
       }
+    end
+
+    def attached_url(attachment)
+      return nil unless attachment.attached?
+      rails_blob_url(attachment, only_path: false, host: request.base_url)
     end
 end

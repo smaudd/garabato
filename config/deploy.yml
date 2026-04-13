@@ -1,13 +1,13 @@
 # Name of your application. Used to uniquely configure containers.
-service: garabato
+service: chat-video-renderer
 
 # Name of the container image (use your-user/app-name on external registries).
-image: garabato
+image: smaudd/chat-video-renderer
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 207.154.255.141
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -20,21 +20,21 @@ servers:
 #
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
 #
-# proxy:
-#   ssl: true
-#   host: app.example.com
+proxy:
+  ssl: true
+  host: rails.plotia.love
 
 # Where you keep your container images.
 registry:
   # Alternatives: hub.docker.com / registry.digitalocean.com / ghcr.io / ...
-  server: localhost:5555
+  # server: https://index.docker.io/v1/
 
   # Needed for authenticated registries.
-  # username: your-user
+  username: smaudd
 
   # Always use an access token rather than real password when possible.
-  # password:
-  #   - KAMAL_REGISTRY_PASSWORD
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
@@ -91,8 +91,8 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: santi
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
