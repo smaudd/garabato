@@ -1,0 +1,76 @@
+<% content_for :page_title, @chat_video.title %>
+<% content_for :header_actions do %>
+  <%= link_to t(".back"), admin_chat_videos_path, class: "btn btn-secondary" %>
+  <%= link_to t("admin.shared.edit"), edit_admin_chat_video_path(@chat_video), class: "btn btn-primary" %>
+<% end %>
+
+<div class="card">
+  <dl class="detail-list">
+    <div>
+      <dt><%= t(".field_slug") %></dt>
+      <dd class="font-mono"><%= @chat_video.slug %></dd>
+    </div>
+    <div>
+      <dt><%= t(".field_accent_color") %></dt>
+      <dd>
+        <span class="color-swatch" style="background:<%= @chat_video.accent_color %>"></span>
+        <%= @chat_video.accent_color %>
+      </dd>
+    </div>
+    <div>
+      <dt><%= t(".field_title_duration") %></dt>
+      <dd><%= @chat_video.title_duration_ms %> ms</dd>
+    </div>
+    <% if @chat_video.background.attached? %>
+      <div>
+        <dt><%= t(".field_background") %></dt>
+        <dd><%= link_to @chat_video.background.filename, url_for(@chat_video.background) %></dd>
+      </div>
+    <% end %>
+    <% if @chat_video.title_audio.attached? %>
+      <div>
+        <dt><%= t(".field_title_audio") %></dt>
+        <dd>
+          <audio controls src="<%= url_for(@chat_video.title_audio) %>"></audio>
+        </dd>
+      </div>
+    <% end %>
+  </dl>
+</div>
+
+<% if @chat_video.chat_entries.any? %>
+  <h2 class="section-title"><%= t(".entries_section") %></h2>
+  <% @chat_video.chat_entries.each_with_index do |entry, i| %>
+    <div class="card entry-card">
+      <h3 class="entry-header"><%= entry.username %> <span class="emoji"><%= entry.avatar_emoji %></span></h3>
+      <dl class="detail-list">
+        <div>
+          <dt><%= ChatEntry.human_attribute_name(:question) %></dt>
+          <dd><%= entry.question %></dd>
+        </div>
+        <% if entry.question_audio.attached? %>
+          <div>
+            <dt><%= ChatEntry.human_attribute_name(:question_audio) %></dt>
+            <dd><audio controls src="<%= url_for(entry.question_audio) %>"></audio></dd>
+          </div>
+        <% end %>
+        <div>
+          <dt><%= ChatEntry.human_attribute_name(:answer) %></dt>
+          <dd><%= entry.answer %></dd>
+        </div>
+        <% if entry.answer_audio.attached? %>
+          <div>
+            <dt><%= ChatEntry.human_attribute_name(:answer_audio) %></dt>
+            <dd><audio controls src="<%= url_for(entry.answer_audio) %>"></audio></dd>
+          </div>
+        <% end %>
+        <% if entry.background.attached? %>
+          <div>
+            <dt><%= ChatEntry.human_attribute_name(:background) %></dt>
+            <dd><%= link_to entry.background.filename, url_for(entry.background) %></dd>
+          </div>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>
+<% end %>

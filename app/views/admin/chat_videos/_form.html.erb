@@ -1,0 +1,71 @@
+<%= form_with model: [:admin, chat_video], data: { controller: "nested-form" } do |f| %>
+  <%= render "shared/error_messages", object: chat_video %>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Video</legend>
+
+    <div class="field">
+      <%= f.label :slug %>
+      <%= f.text_field :slug, class: "input font-mono" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :accent_color %>
+      <div class="input-with-preview">
+        <%= f.color_field :accent_color, class: "color-input" %>
+        <%= f.text_field :accent_color, class: "input input-sm font-mono", data: { nested_form_target: "accentColorText" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :title_duration_ms %>
+      <%= f.number_field :title_duration_ms, class: "input input-sm", min: 0, step: 100 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :background %>
+      <% if chat_video.background.attached? %>
+        <p class="file-current"><%= chat_video.background.filename %></p>
+      <% end %>
+      <%= f.file_field :background, class: "file-input", accept: "image/*,video/*" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title_audio %>
+      <% if chat_video.title_audio.attached? %>
+        <p class="file-current"><%= chat_video.title_audio.filename %></p>
+      <% end %>
+      <%= f.file_field :title_audio, class: "file-input", accept: "audio/*" %>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset" data-nested-form-target="container">
+    <legend class="fieldset-legend"><%= t("admin.chat_videos.form.entries_section") %></legend>
+
+    <template data-nested-form-target="template">
+      <%= f.fields_for :chat_entries, ChatEntry.new, child_index: "NEW_RECORD" do |ef| %>
+        <%= render "entry_fields", f: ef, n: "?" %>
+      <% end %>
+    </template>
+
+    <%= f.fields_for :chat_entries do |ef| %>
+      <%= render "entry_fields", f: ef, n: ef.index.to_i + 1 %>
+    <% end %>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= button_tag t("admin.chat_videos.form.add_entry"),
+        type: "button", class: "btn btn-outline",
+        data: { action: "nested-form#addEntry" } %>
+  </div>
+
+  <div class="form-actions form-actions--submit">
+    <%= link_to t("admin.chat_videos.form.cancel"), :back, class: "btn btn-secondary" %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -29,3 +29,69 @@
 
 en:
   hello: "Hello world"
+
+  admin:
+    shared:
+      edit: Edit
+      delete: Delete
+
+    chat_videos:
+      notices:
+        created: "Video created successfully."
+        updated: "Video updated successfully."
+        destroyed: "Video deleted successfully."
+
+      index:
+        page_title: Videos
+        new: New video
+        col_slug: Slug
+        col_title: Title
+        col_entries: Entries
+        confirm_delete: "Delete this video?"
+        empty: No videos yet.
+        empty_link: Create the first one
+
+      show:
+        back: Back to videos
+        field_slug: Slug
+        field_accent_color: Accent color
+        field_title_duration: Title duration (ms)
+        field_background: Background
+        field_title_audio: Title audio
+        entries_section: Entries
+
+      new:
+        page_title: New video
+        back: Back to videos
+
+      edit:
+        page_title: Edit video
+        back: Back
+
+      form:
+        entries_section: Entries
+        cancel: Cancel
+        add_entry: Add entry
+        remove_entry: Remove
+        entry_header: "Entry #%{n}"
+
+  activerecord:
+    attributes:
+      chat_video:
+        slug: Slug
+        title: Title
+        accent_color: Accent color
+        title_duration_ms: Title duration (ms)
+        background: Background (video/image)
+        title_audio: Title audio
+      chat_entry:
+        username: Username
+        avatar_emoji: Emoji
+        bubble_color: Bubble color
+        question: Question
+        question_duration_ms: Question duration (ms)
+        answer: Answer
+        answer_duration_ms: Answer duration (ms)
+        background: Entry background
+        question_audio: Question audio
+        answer_audio: Answer audio

@@ -1,12 +1,11 @@
-<% content_for :title, "Editing post" %>
+<% content_for :title, "Edit post" %>
 
-<h1>Editing post</h1>
-
-<%= render "form", post: @post %>
-
-<br>
-
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+<div class="flex items-center justify-between mb-4">
+  <h1 style="margin:0">Edit post</h1>
+  <%= link_to "← Back", post_path(@post), class: "btn btn-secondary btn-sm" %>
 </div>
+
+<div class="card form-card" style="max-width:40rem">
+  <%= render "form", post: @post %>
+</div>
+

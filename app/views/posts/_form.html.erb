@@ -1,22 +1,13 @@
 <%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  <%= render "shared/error_messages", object: post %>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "input", placeholder: "Post title" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions form-actions--submit">
+    <%= link_to "Cancel", posts_path, class: "btn btn-secondary" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

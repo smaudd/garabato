@@ -1,7 +1,51 @@
-$primary: #1bad3a;
-$secondary: #f5f6fa;
-$text: #222;
-$background: #fff;
-$border: #e0e0e0;
-$success: #27ae60;
-$error: #e74c3c;
+// ── Brand ──────────────────────────────────────────────────────────────────
+$green-300:  #86efac;
+$green-400:  #4ade80;
+$green-500:  #22c55e;
+$green-600:  #16a34a;
+$green-700:  #15803d;
+
+// ── Neutrals ───────────────────────────────────────────────────────────────
+$gray-50:    #f9fafb;
+$gray-100:   #f3f4f6;
+$gray-200:   #e5e7eb;
+$gray-300:   #d1d5db;
+$gray-400:   #9ca3af;
+$gray-500:   #6b7280;
+$gray-600:   #4b5563;
+$gray-700:   #374151;
+$gray-800:   #1f2937;
+$gray-900:   #111827;
+
+// ── Dark mode surfaces ─────────────────────────────────────────────────────
+// (mobile-first, used by ALL semantic tokens — everything is dark)
+$surface-0:  #090e18;   // sidebar / deepest background
+$surface-1:  #0f172a;   // main body background
+$surface-2:  #1a2537;   // cards, topbar, modals
+$surface-3:  #243048;   // hover states, input backgrounds
+
+// ── Semantic tokens (dark mode) ────────────────────────────────────────────
+$primary:    $green-500;
+$primary-dk: $green-600;
+$primary-lt: $green-400;  // brighter variant for text on dark bg
+$text:       #e2e8f0;     // slate-200
+$text-muted: #8496af;     // step below text
+$bg:         $surface-1;
+$bg-subtle:  $surface-2;
+$border:     #2a3a52;
+$error:      #ef4444;
+$error-lt:   #f87171;     // lighter red for dark bg text
+$success:    $green-500;
+$success-lt: $green-400;  // lighter green for dark bg text
+$warning:    #f59e0b;
+
+// ── Admin palette ──────────────────────────────────────────────────────────
+$admin-sidebar-bg:   $surface-0;
+$admin-sidebar-text: #8496af;
+$admin-accent:       $green-500;
+
+// ── Breakpoints (mobile-first) ─────────────────────────────────────────────
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+

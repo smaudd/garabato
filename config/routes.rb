@@ -21,6 +21,17 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  namespace :admin do
+    root to: redirect("/admin/chat_videos")
+    resources :chat_videos
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :chat_videos, param: :slug, only: [ :index, :show ]
+    end
+  end
+
   # Defines the root path route ("/")
   root "posts#index"
 end

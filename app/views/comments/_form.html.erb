@@ -1,20 +1,15 @@
 <%= form_with(model: [post, comment]) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "shared/error_messages", object: comment %>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+  <div class="field">
+    <%= form.label :body, "Comment" %>
+    <%= form.text_area :body, class: "input", rows: 3, placeholder: "Write a comment…" %>
   </div>
-  <div>
-    <%= form.submit %>
+
+  <div class="form-actions">
+    <%= form.submit comment.persisted? ? "Update" : "Post comment", class: "btn btn-primary btn-sm" %>
+    <% if comment.persisted? %>
+      <%= link_to "Cancel", post_path(post), class: "btn btn-ghost btn-sm" %>
+    <% end %>
   </div>
 <% end %>

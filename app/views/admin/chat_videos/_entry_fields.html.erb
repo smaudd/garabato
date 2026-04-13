@@ -1,0 +1,78 @@
+<div class="entry-fields" data-nested-form-target="entry">
+  <div class="entry-fields-header">
+    <h4><%= t("admin.chat_videos.form.entry_header", n: n) %></h4>
+    <%= f.hidden_field :_destroy, data: { nested_form_target: "destroy" } %>
+    <%= button_tag t("admin.chat_videos.form.remove_entry"),
+        type: "button", class: "btn btn-danger btn-sm",
+        data: { action: "nested-form#removeEntry" } %>
+  </div>
+
+  <div class="entry-grid">
+    <div class="field">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :avatar_emoji %>
+      <%= f.text_field :avatar_emoji, class: "input input-sm" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :bubble_color %>
+      <div class="input-with-preview">
+        <%= f.color_field :bubble_color, class: "color-input" %>
+        <%= f.text_field :bubble_color, class: "input input-sm font-mono" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :position %>
+      <%= f.number_field :position, class: "input input-sm", min: 0 %>
+    </div>
+
+    <div class="field field--full">
+      <%= f.label :question %>
+      <%= f.text_area :question, class: "input", rows: 3 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :question_duration_ms %>
+      <%= f.number_field :question_duration_ms, class: "input input-sm", min: 0, step: 1 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :question_audio %>
+      <% if f.object.question_audio.attached? %>
+        <p class="file-current"><%= f.object.question_audio.filename %></p>
+      <% end %>
+      <%= f.file_field :question_audio, class: "file-input", accept: "audio/*" %>
+    </div>
+
+    <div class="field field--full">
+      <%= f.label :answer %>
+      <%= f.text_area :answer, class: "input", rows: 3 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :answer_duration_ms %>
+      <%= f.number_field :answer_duration_ms, class: "input input-sm", min: 0, step: 1 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :answer_audio %>
+      <% if f.object.answer_audio.attached? %>
+        <p class="file-current"><%= f.object.answer_audio.filename %></p>
+      <% end %>
+      <%= f.file_field :answer_audio, class: "file-input", accept: "audio/*" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :background %>
+      <% if f.object.background.attached? %>
+        <p class="file-current"><%= f.object.background.filename %></p>
+      <% end %>
+      <%= f.file_field :background, class: "file-input", accept: "image/*,video/*" %>
+    </div>
+  </div>
+</div>

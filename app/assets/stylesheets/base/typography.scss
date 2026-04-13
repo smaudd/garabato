@@ -1,35 +1,43 @@
-$primary-font: 'Courier New', Arial, sans-serif;
+// ── System font stacks ─────────────────────────────────────────────────────
+$font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
 
 body {
-  font-family: $primary-font;
+  font-family: $font-sans;
   color: $text;
-  background: $background;
-  font-size: 16px;
+  background: $bg;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $primary;
-  font-weight: 600;
-  margin-bottom: 0.5em;
+  font-weight: 700;
+  line-height: 1.25;
+  color: $text;
+  margin: 0 0 0.5em;
 }
+
+h1 { font-size: 1.875rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
 
 a:not(.btn) {
-    color: $primary;
-    text-decoration: none;
-    transition: color 0.2s;
+  color: $primary-lt;
+  text-decoration: none;
+  &:hover { color: $primary; text-decoration: underline; }
 }
 
-a:not(.btn):hover, a:not(.btn):focus {
-    color: darken($primary, 10%);
-}
+p { margin: 0 0 1em; }
 
-.notice {
-  padding: 0.8em 1.2em;
-  margin-bottom: 1em;
-}
-
-.notice.success {
-  background: $success;
-  color: #fff;
-}
+.font-mono { font-family: $font-mono; }
+.text-muted { color: $text-muted; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.font-semibold { font-weight: 600; }

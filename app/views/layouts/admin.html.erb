@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for?(:page_title) ? "#{yield(:page_title)} — Admin" : "Admin — Garabato" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="admin-body">
+
+    <div class="admin-shell" data-controller="nav">
+
+      <%# Off-canvas backdrop — click to close sidebar on mobile %>
+      <div class="admin-nav-backdrop"
+           data-nav-target="backdrop"
+           data-action="click->nav#close"></div>
+
+      <aside class="admin-sidebar" data-nav-target="sidebar">
+        <button class="admin-sidebar-close"
+                data-action="click->nav#close"
+                aria-label="Close menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+
+        <a href="<%= admin_chat_videos_path %>" class="admin-brand">
+          <div class="admin-brand-icon">G</div>
+          <div>
+            <div class="admin-brand-name">Garabato</div>
+            <div class="admin-brand-sub">CMS</div>
+          </div>
+        </a>
+
+        <nav class="admin-nav">
+          <p class="admin-nav-label">Content</p>
+          <%= link_to admin_chat_videos_path,
+              class: "admin-nav-link #{'is-active' if request.path.start_with?('/admin/chat_videos')}" do %>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            Videos
+          <% end %>
+
+          <p class="admin-nav-label" style="margin-top:1.5rem">Site</p>
+          <%= link_to root_path, class: "admin-nav-link" do %>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View site
+          <% end %>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+          <% if Current.user %>
+            <span class="admin-user-email"><%= Current.user.email_address %></span>
+          <% end %>
+          <%= button_to "Logout", session_path, method: :delete, class: "admin-logout-btn" %>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <%# Hamburger — visible on mobile, hidden on desktop via CSS %>
+          <button class="admin-hamburger"
+                  data-action="click->nav#toggle"
+                  aria-label="Open navigation">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <h1 class="admin-topbar-title">
+            <%= content_for?(:page_title) ? yield(:page_title) : "Dashboard" %>
+          </h1>
+          <div class="admin-topbar-actions">
+            <%= yield :header_actions %>
+          </div>
+        </header>
+
+        <% if flash.any? %>
+          <div class="admin-flash-wrap">
+            <% flash.each do |type, message| %>
+              <div class="admin-flash admin-flash--<%= type %>"><%= message %></div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="admin-content">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

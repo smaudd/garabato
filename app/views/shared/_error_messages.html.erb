@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+  <div class="error-messages">
+    <p><%= t("errors.messages.model_invalid", count: object.errors.count, errors: object.errors.full_messages.to_sentence) %></p>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
