@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_13_163001) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_13_200000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -47,27 +47,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_163001) do
 
   create_table "chat_entries", force: :cascade do |t|
     t.text "answer", null: false
-    t.integer "answer_duration_ms", default: 0
     t.string "avatar_emoji"
     t.string "bubble_color"
     t.integer "chat_video_id", null: false
     t.datetime "created_at", null: false
-    t.integer "position", default: 0, null: false
     t.text "question", null: false
-    t.integer "question_duration_ms", default: 0
+    t.string "question_voice"
     t.datetime "updated_at", null: false
     t.string "username", null: false
-    t.index ["chat_video_id", "position"], name: "index_chat_entries_on_chat_video_id_and_position"
     t.index ["chat_video_id"], name: "index_chat_entries_on_chat_video_id"
   end
 
   create_table "chat_videos", force: :cascade do |t|
     t.string "accent_color", default: "#5865F2"
+    t.string "background_path"
     t.datetime "created_at", null: false
+    t.integer "question_display_ms", default: 2500, null: false
+    t.string "question_voice", default: "ef_dora", null: false
     t.string "slug", null: false
     t.string "title", null: false
-    t.integer "title_duration_ms", default: 3000
+    t.string "tts_model", default: "speaches-ai/Kokoro-82M-v1.0-ONNX", null: false
     t.datetime "updated_at", null: false
+    t.string "voice", default: "em_santa", null: false
     t.index ["slug"], name: "index_chat_videos_on_slug", unique: true
   end
 

@@ -18,21 +18,25 @@
       </dd>
     </div>
     <div>
-      <dt><%= t(".field_title_duration") %></dt>
-      <dd><%= @chat_video.title_duration_ms %> ms</dd>
+      <dt><%= t(".field_tts_model") %></dt>
+      <dd class="font-mono"><%= @chat_video.tts_model %></dd>
     </div>
-    <% if @chat_video.background.attached? %>
+    <div>
+      <dt><%= t(".field_voice") %></dt>
+      <dd class="font-mono"><%= @chat_video.voice %></dd>
+    </div>
+    <div>
+      <dt><%= t(".field_question_voice") %></dt>
+      <dd class="font-mono"><%= @chat_video.question_voice %></dd>
+    </div>
+    <div>
+      <dt><%= t(".field_question_display_ms") %></dt>
+      <dd><%= @chat_video.question_display_ms %> ms</dd>
+    </div>
+    <% if @chat_video.background_path.present? %>
       <div>
         <dt><%= t(".field_background") %></dt>
-        <dd><%= link_to @chat_video.background.filename, url_for(@chat_video.background) %></dd>
-      </div>
-    <% end %>
-    <% if @chat_video.title_audio.attached? %>
-      <div>
-        <dt><%= t(".field_title_audio") %></dt>
-        <dd>
-          <audio controls src="<%= url_for(@chat_video.title_audio) %>"></audio>
-        </dd>
+        <dd class="font-mono"><%= @chat_video.background_path %></dd>
       </div>
     <% end %>
   </dl>
@@ -42,34 +46,28 @@
   <h2 class="section-title"><%= t(".entries_section") %></h2>
   <% @chat_video.chat_entries.each_with_index do |entry, i| %>
     <div class="card entry-card">
-      <h3 class="entry-header"><%= entry.username %> <span class="emoji"><%= entry.avatar_emoji %></span></h3>
+      <h3 class="entry-header">
+        <span class="emoji"><%= entry.avatar_emoji %></span>
+        <%= entry.username %>
+        <% if entry.bubble_color.present? %>
+          <span class="color-swatch" style="background:<%= entry.bubble_color %>"></span>
+        <% end %>
+      </h3>
       <dl class="detail-list">
+        <% if entry.question_voice.present? %>
+          <div>
+            <dt><%= ChatEntry.human_attribute_name(:question_voice) %></dt>
+            <dd class="font-mono"><%= entry.question_voice %></dd>
+          </div>
+        <% end %>
         <div>
           <dt><%= ChatEntry.human_attribute_name(:question) %></dt>
           <dd><%= entry.question %></dd>
         </div>
-        <% if entry.question_audio.attached? %>
-          <div>
-            <dt><%= ChatEntry.human_attribute_name(:question_audio) %></dt>
-            <dd><audio controls src="<%= url_for(entry.question_audio) %>"></audio></dd>
-          </div>
-        <% end %>
         <div>
           <dt><%= ChatEntry.human_attribute_name(:answer) %></dt>
           <dd><%= entry.answer %></dd>
         </div>
-        <% if entry.answer_audio.attached? %>
-          <div>
-            <dt><%= ChatEntry.human_attribute_name(:answer_audio) %></dt>
-            <dd><audio controls src="<%= url_for(entry.answer_audio) %>"></audio></dd>
-          </div>
-        <% end %>
-        <% if entry.background.attached? %>
-          <div>
-            <dt><%= ChatEntry.human_attribute_name(:background) %></dt>
-            <dd><%= link_to entry.background.filename, url_for(entry.background) %></dd>
-          </div>
-        <% end %>
       </dl>
     </div>
   <% end %>

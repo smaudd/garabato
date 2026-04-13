@@ -27,8 +27,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :position %>
-      <%= f.number_field :position, class: "input input-sm", min: 0 %>
+      <%= f.label :question_voice %>
+      <%= f.text_field :question_voice, class: "input font-mono", placeholder: t("admin.chat_videos.form.voice_placeholder") %>
     </div>
 
     <div class="field field--full">
@@ -36,43 +36,9 @@
       <%= f.text_area :question, class: "input", rows: 3 %>
     </div>
 
-    <div class="field">
-      <%= f.label :question_duration_ms %>
-      <%= f.number_field :question_duration_ms, class: "input input-sm", min: 0, step: 1 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :question_audio %>
-      <% if f.object.question_audio.attached? %>
-        <p class="file-current"><%= f.object.question_audio.filename %></p>
-      <% end %>
-      <%= f.file_field :question_audio, class: "file-input", accept: "audio/*" %>
-    </div>
-
     <div class="field field--full">
       <%= f.label :answer %>
       <%= f.text_area :answer, class: "input", rows: 3 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :answer_duration_ms %>
-      <%= f.number_field :answer_duration_ms, class: "input input-sm", min: 0, step: 1 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :answer_audio %>
-      <% if f.object.answer_audio.attached? %>
-        <p class="file-current"><%= f.object.answer_audio.filename %></p>
-      <% end %>
-      <%= f.file_field :answer_audio, class: "file-input", accept: "audio/*" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :background %>
-      <% if f.object.background.attached? %>
-        <p class="file-current"><%= f.object.background.filename %></p>
-      <% end %>
-      <%= f.file_field :background, class: "file-input", accept: "image/*,video/*" %>
     </div>
   </div>
 </div>

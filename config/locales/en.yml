@@ -55,9 +55,11 @@ en:
         back: Back to videos
         field_slug: Slug
         field_accent_color: Accent color
-        field_title_duration: Title duration (ms)
-        field_background: Background
-        field_title_audio: Title audio
+        field_tts_model: TTS model
+        field_voice: Voice (answers)
+        field_question_voice: Voice (questions)
+        field_question_display_ms: Question display (ms)
+        field_background: Background path
         entries_section: Entries
 
       new:
@@ -74,6 +76,7 @@ en:
         add_entry: Add entry
         remove_entry: Remove
         entry_header: "Entry #%{n}"
+        voice_placeholder: "inherit from video"
 
   activerecord:
     attributes:
@@ -81,17 +84,15 @@ en:
         slug: Slug
         title: Title
         accent_color: Accent color
-        title_duration_ms: Title duration (ms)
-        background: Background (video/image)
-        title_audio: Title audio
+        tts_model: TTS model
+        voice: Voice (answers)
+        question_voice: Voice (questions)
+        question_display_ms: Question display (ms)
+        background_path: Background path
       chat_entry:
         username: Username
         avatar_emoji: Emoji
         bubble_color: Bubble color
         question: Question
-        question_duration_ms: Question duration (ms)
+        question_voice: Voice (question override)
         answer: Answer
-        answer_duration_ms: Answer duration (ms)
-        background: Entry background
-        question_audio: Question audio
-        answer_audio: Answer audio

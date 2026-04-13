@@ -47,13 +47,12 @@ class Admin::ChatVideosController < Admin::BaseController
 
     def chat_video_params
       params.require(:chat_video).permit(
-        :slug, :title, :accent_color, :title_duration_ms,
-        :background, :title_audio,
+        :slug, :title, :accent_color, :tts_model, :voice, :question_voice,
+        :question_display_ms, :background_path,
         chat_entries_attributes: [
-          :id, :position, :username, :avatar_emoji, :bubble_color,
-          :question, :question_duration_ms,
-          :answer, :answer_duration_ms,
-          :background, :question_audio, :answer_audio,
+          :id, :username, :avatar_emoji, :bubble_color,
+          :question, :question_voice,
+          :answer,
           :_destroy
         ]
       )
