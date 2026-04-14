@@ -5,11 +5,8 @@
   "rules": [
     {
       "patterns": [
-        "/edit$",
         "/modal",
-        "/session/new",
-        "/comments.*",
-        "/posts/.*/comments.*"
+        "/session/new"
       ],
       "properties": {
         "context": "modal",
@@ -18,14 +15,7 @@
       "comment": "Present forms and custom modal path as modals."
     },
     {
-      "patterns": ["/numbers$"],
-      "properties": {
-        "view_controller": "numbers"
-      },
-      "comment": "Intercept with a native view."
-    },
-    {
-      "patterns": ["^/$"],
+      "patterns": ["^/$", "^/admin/chat_videos$"],
       "properties": {
         "presentation": "clear_all"
       },

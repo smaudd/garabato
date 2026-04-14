@@ -9,6 +9,7 @@ extension HotwireTab {
 
         if Demo.current == Demo.local {
             tabs.append(.navigation)
+            tabs.append(.bridgeComponents)
         }
 
         return tabs

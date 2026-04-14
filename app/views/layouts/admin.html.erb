@@ -86,12 +86,15 @@
           </div>
         <% end %>
 
+  
+
         <div class="admin-content">
           <%= yield %>
         </div>
       </div>
 
     </div>
-
+    <!-- Turbo needs a non-Turbo element to render into when replacing the body, so we put this here and target it in our controllers with `turbo_stream.replace("turbo-catcher")` %> -->
+    <div id="turbo-catcher"></div>
   </body>
 </html>

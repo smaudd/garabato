@@ -39,12 +39,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
-
   create_table "chat_entries", force: :cascade do |t|
     t.text "answer", null: false
     t.string "avatar_emoji"
@@ -81,14 +75,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "companies", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description"
-    t.string "name"
-    t.datetime "updated_at", null: false
-    t.string "website"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "likeable_id", null: false
@@ -101,43 +87,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "address"
-    t.integer "company_id", null: false
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.string "phone"
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_locations_on_company_id"
-  end
-
-  create_table "locations_posts", id: false, force: :cascade do |t|
-    t.integer "location_id", null: false
-    t.integer "post_id", null: false
-    t.index ["location_id", "post_id"], name: "index_locations_posts_on_location_id_and_post_id"
-    t.index ["post_id", "location_id"], name: "index_locations_posts_on_post_id_and_location_id"
-  end
-
   create_table "posts", force: :cascade do |t|
-    t.text "body"
-    t.string "buffer_update_id"
-    t.integer "category_id"
-    t.integer "company_id"
     t.datetime "created_at", null: false
-    t.datetime "ends_at"
-    t.text "social_caption"
-    t.datetime "starts_at"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["company_id"], name: "index_posts_on_company_id"
-  end
-
-  create_table "posts_tags", id: false, force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "tag_id", null: false
-    t.index ["post_id", "tag_id"], name: "index_posts_tags_on_post_id_and_tag_id"
-    t.index ["tag_id", "post_id"], name: "index_posts_tags_on_tag_id_and_post_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -147,12 +100,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
     t.string "user_agent"
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -169,8 +116,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_13_210000) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
-  add_foreign_key "locations", "companies"
-  add_foreign_key "posts", "categories"
-  add_foreign_key "posts", "companies"
   add_foreign_key "sessions", "users"
 end
