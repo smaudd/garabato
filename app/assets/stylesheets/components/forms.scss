@@ -100,8 +100,9 @@ textarea.input { resize: vertical; min-height: 5rem; }
 .fieldset {
   border: 1px solid $border;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
   margin-bottom: 1.5rem;
+  background: $bg-subtle;
 
   & + & { margin-top: 0; }
 

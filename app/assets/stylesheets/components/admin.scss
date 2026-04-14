@@ -297,7 +297,7 @@
 
 // ── Content area ───────────────────────────────────────────────────────────
 .admin-content {
-  padding: 0.5rem;
+  padding: 0.25rem;
   flex: 1;
 
   @media (min-width: $bp-md) { padding: 1.5rem; }
@@ -305,14 +305,9 @@
 
 // ── Card ───────────────────────────────────────────────────────────────────
 .card {
-  background: $bg-subtle;
-  border: 1px solid $border;
-  border-radius: 0.625rem;
   overflow: clip;
-  margin-bottom: 1.5rem;
 
   &.form-card {
-    padding: 0.5rem;
     overflow: visible;
 
     @media (min-width: $bp-md) { padding: 1.5rem; }
@@ -480,7 +475,7 @@
   display: grid;
   grid-template-columns: 1fr; // mobile: single column
   gap: 0.875rem;
-  padding: 1rem;
+  padding: 0.5rem;
 
   @media (min-width: $bp-md) {
     grid-template-columns: repeat(2, 1fr); // tablet+: 2 columns
